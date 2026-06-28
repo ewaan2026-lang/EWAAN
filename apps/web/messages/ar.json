@@ -169,6 +169,86 @@
     "labelBeds": "{n} غرف",
     "labelBaths": "{n} حمّام"
   },
+  "leases": {
+    "title": "العقود",
+    "subtitle": "عقود الإيجار ودورة حياتها وجداول دفعاتها",
+    "add": "إنشاء عقد",
+    "addFirst": "أنشئ أول عقد",
+    "emptyTitle": "لا توجد عقود بعد",
+    "emptyBody": "أنشئ أول عقد إيجار لربط وحدة بمستأجر وتوليد جدول الدفعات تلقائياً.",
+    "newTitle": "عقد إيجار جديد",
+    "newSubtitle": "اختر الوحدة والمستأجر وحدّد شروط العقد. سيُولّد جدول الدفعات تلقائياً.",
+    "needUnitsTitle": "تحتاج وحدة ومستأجراً أولاً",
+    "needUnitsBody": "لإنشاء عقد، أضف عقاراً بوحدة واحدة على الأقل ومستأجراً واحداً.",
+    "sections": {
+      "parties": "الأطراف",
+      "terms": "شروط العقد",
+      "late": "إعدادات التأخر والتجديد"
+    },
+    "fields": {
+      "unit": "الوحدة",
+      "tenant": "المستأجر",
+      "contractNumber": "رقم العقد",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ النهاية",
+      "rent": "قيمة الدفعة (ريال)",
+      "frequency": "دورية الدفع",
+      "deposit": "مبلغ التأمين (ريال)",
+      "lateFeeType": "نوع غرامة التأخر",
+      "lateFeeValue": "قيمة الغرامة",
+      "grace": "أيام السماح",
+      "autoRenew": "تجديد تلقائي",
+      "status": "حالة العقد"
+    },
+    "create": "إنشاء العقد",
+    "errors": {
+      "unit": "اختر الوحدة.",
+      "tenant": "اختر المستأجر.",
+      "dates": "تواريخ العقد غير صحيحة.",
+      "rent": "قيمة الدفعة مطلوبة.",
+      "generic": "تعذّر إنشاء العقد. حاول مرة أخرى."
+    },
+    "detailInfoTitle": "تفاصيل العقد",
+    "scheduleTitle": "جدول الدفعات",
+    "scheduleCount": "{count} دفعة",
+    "noSchedule": "لا توجد دفعات لهذا العقد.",
+    "labels": {
+      "rentPerInstallment": "قيمة الدفعة",
+      "deposit": "التأمين",
+      "frequency": "الدورية",
+      "term": "المدة",
+      "lateFee": "غرامة التأخر",
+      "grace": "أيام السماح",
+      "unit": "الوحدة",
+      "tenant": "المستأجر",
+      "installment": "دفعة"
+    }
+  },
+  "leaseStatus": {
+    "draft": "مسودة",
+    "active": "نشط",
+    "expired": "منتهٍ",
+    "terminated": "ملغى",
+    "renewed": "مجدّد"
+  },
+  "paymentFrequency": {
+    "monthly": "شهري",
+    "quarterly": "ربع سنوي",
+    "semi_annual": "نصف سنوي",
+    "annual": "سنوي"
+  },
+  "lateFeeType": {
+    "none": "بدون",
+    "percentage": "نسبة %",
+    "fixed": "مبلغ ثابت"
+  },
+  "scheduleStatus": {
+    "pending": "مستحقّة",
+    "invoiced": "مفوترة",
+    "paid": "مدفوعة",
+    "overdue": "متأخّرة",
+    "waived": "معفاة"
+  },
   "propertyTypes": {
     "residential_building": "مبنى سكني",
     "villa": "فيلا",
