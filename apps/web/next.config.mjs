@@ -6,9 +6,6 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["@ewaan/db"],
-  experimental: {
-    typedRoutes: false,
-  },
 };
 
 export default withNextIntl(nextConfig);

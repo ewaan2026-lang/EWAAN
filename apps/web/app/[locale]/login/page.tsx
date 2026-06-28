@@ -3,6 +3,9 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { LoginForm } from "@/components/login-form";
 
+// تتحقق من الجلسة الحالية — تُعرض ديناميكياً (لا تُولَّد مسبقاً وقت البناء).
+export const dynamic = "force-dynamic";
+
 export default async function LoginPage({
   params,
 }: {

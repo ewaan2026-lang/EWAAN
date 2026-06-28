@@ -21,7 +21,7 @@ export default async function DashboardPage({
   // هل ينتمي المستخدم لأي مؤسسة؟ (RLS تُرجع مؤسساته فقط)
   const { data: membership } = await supabase
     .from("org_members")
-    .select("organization_id, organizations(name)")
+    .select("organization_id")
     .limit(1)
     .maybeSingle();
 
@@ -63,8 +63,13 @@ export default async function DashboardPage({
   const occupancy =
     totalUnits > 0 ? Math.round(((occupied ?? 0) / totalUnits) * 100) : 0;
 
-  const orgName =
-    (membership.organizations as { name?: string } | null)?.name ?? "";
+  const { data: org } = await supabase
+    .from("organizations")
+    .select("name")
+    .eq("id", membership.organization_id)
+    .maybeSingle();
+
+  const orgName = org?.name ?? "";
   const displayName = user?.email?.split("@")[0] ?? orgName;
 
   return (

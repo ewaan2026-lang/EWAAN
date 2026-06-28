@@ -4,6 +4,9 @@ import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { signOutAction } from "@/lib/actions/auth";
 
+// صفحات محميّة بالجلسة — تُعرض ديناميكياً لكل طلب (لا تُولَّد مسبقاً وقت البناء).
+export const dynamic = "force-dynamic";
+
 export default async function AppLayout({
   children,
   params,
