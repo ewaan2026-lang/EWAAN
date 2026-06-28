@@ -19,7 +19,9 @@
     "optional": "optional",
     "none": "—",
     "all": "All",
-    "search": "Search"
+    "search": "Search",
+    "comingSoonTitle": "Coming soon",
+    "comingSoonBody": "This section is under development and will be available in an upcoming update."
   },
   "login": {
     "title": "Welcome back",

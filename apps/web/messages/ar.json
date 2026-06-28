@@ -19,7 +19,9 @@
     "optional": "اختياري",
     "none": "—",
     "all": "الكل",
-    "search": "بحث"
+    "search": "بحث",
+    "comingSoonTitle": "قريباً",
+    "comingSoonBody": "هذا القسم قيد التطوير وسيتوفّر في تحديث قادم."
   },
   "login": {
     "title": "أهلاً بك من جديد",
