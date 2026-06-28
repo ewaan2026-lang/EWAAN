@@ -1,0 +1,22 @@
+{
+  "name": "@ewaan/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./types": "./types.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.47.10"
+  },
+  "devDependencies": {
+    "@ewaan/config": "workspace:*",
+    "typescript": "^5.7.2"
+  }
+}

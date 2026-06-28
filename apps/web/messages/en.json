@@ -1,0 +1,46 @@
+{
+  "brand": {
+    "name": "EWAAN",
+    "tagline": "Residential property management platform"
+  },
+  "common": {
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "loading": "Loading…",
+    "language": "العربية",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "login": {
+    "title": "Welcome back",
+    "subtitle": "Sign in to manage your portfolio",
+    "submit": "Sign in",
+    "noAccountHint": "No account yet? Create one, then set up your organization after signing in.",
+    "errorInvalid": "Incorrect email or password. Please try again.",
+    "errorGeneric": "Could not sign in. Please try again."
+  },
+  "dashboard": {
+    "title": "Overview",
+    "welcome": "Welcome, {name}",
+    "properties": "Properties",
+    "units": "Units",
+    "leases": "Active leases",
+    "occupancy": "Occupancy",
+    "emptyState": "No data yet. Start by adding your first property.",
+    "noOrgTitle": "Create your organization",
+    "noOrgSubtitle": "To finish setup, create your management organization.",
+    "orgNameLabel": "Organization name",
+    "createOrg": "Create organization",
+    "creating": "Creating…"
+  },
+  "nav": {
+    "overview": "Overview",
+    "properties": "Properties",
+    "leases": "Leases",
+    "payments": "Payments",
+    "maintenance": "Maintenance",
+    "settings": "Settings"
+  }
+}

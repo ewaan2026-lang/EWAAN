@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Write-Output \"=== git available? ===\"; $g = Get-Command git -ErrorAction SilentlyContinue; if \\($g\\) { git --version; Write-Output \"Path: $\\($g.Source\\)\" } else { Write-Output \"git NOT on PATH\" })",
+      "PowerShell(git config --global user.name)",
+      "PowerShell(git config --global user.email)",
+      "PowerShell(git config --global credential.helper)",
+      "PowerShell($cfg = \"$env:APPDATA\\\\GitHub Desktop\"; Write-Output \"=== GH Desktop config dir ===\"; Test-Path $cfg; Get-ChildItem $cfg -ErrorAction SilentlyContinue | Select-Object Name; Write-Output \"=== logins / accounts \\(sanitized\\) ===\"; $accts = Get-Content \"$cfg\\\\.git-credentials\" -ErrorAction SilentlyContinue; if\\($accts\\){\"git-credentials file exists\"} else {\"no .git-credentials in config\"})"
+    ]
+  }
+}
