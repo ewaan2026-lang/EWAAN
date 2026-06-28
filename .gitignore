@@ -17,6 +17,11 @@ dist
 .env*.local
 .env.local
 
+# editor / tooling
+.claude/
+.vscode/
+.idea/
+
 # misc
 .DS_Store
 *.pem
