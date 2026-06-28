@@ -12,7 +12,9 @@ import { Field, fieldClass } from "@/components/ui/field";
 const initialState: PropertyState = {};
 const propertyTypes = Constants.public.Enums.property_type;
 
-export function PropertyForm() {
+export type OwnerOption = { id: string; full_name: string };
+
+export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
   const t = useTranslations("properties");
   const tp = useTranslations("propertyTypes");
   const tc = useTranslations("common");
@@ -47,6 +49,19 @@ export function PropertyForm() {
           ))}
         </select>
       </Field>
+
+      {owners.length > 0 ? (
+        <Field label={t("fields.owner")} htmlFor="owner_id" hint={tc("optional")}>
+          <select id="owner_id" name="owner_id" defaultValue="" className={fieldClass}>
+            <option value="">{t("fields.ownerNone")}</option>
+            {owners.map((o) => (
+              <option key={o.id} value={o.id}>
+                {o.full_name}
+              </option>
+            ))}
+          </select>
+        </Field>
+      ) : null}
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label={t("fields.city")} htmlFor="city" hint={tc("optional")}>

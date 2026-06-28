@@ -46,10 +46,39 @@
   "nav": {
     "overview": "نظرة عامة",
     "properties": "العقارات",
+    "owners": "الملّاك",
     "leases": "العقود",
     "payments": "المدفوعات",
     "maintenance": "الصيانة",
     "settings": "الإعدادات"
+  },
+  "owners": {
+    "title": "الملّاك",
+    "subtitle": "إدارة ملّاك العقارات وبيانات تواصلهم وأتعابهم",
+    "add": "إضافة مالك",
+    "addFirst": "أضف أول مالك",
+    "emptyTitle": "لا يوجد ملّاك بعد",
+    "emptyBody": "أضف ملّاك عقاراتك لربطهم بالعقارات وإصدار كشوف حساباتهم لاحقاً.",
+    "newTitle": "إضافة مالك جديد",
+    "newSubtitle": "أدخل بيانات المالك. يمكنك ربط عقاراته لاحقاً.",
+    "fields": {
+      "name": "الاسم الكامل",
+      "namePlaceholder": "مثال: عبدالله بن محمد",
+      "phone": "الجوال",
+      "email": "البريد الإلكتروني",
+      "nationalId": "رقم الهوية",
+      "iban": "الآيبان (لصرف العائد)",
+      "commission": "نسبة أتعاب الإدارة (%)",
+      "notes": "ملاحظات"
+    },
+    "create": "حفظ المالك",
+    "errorName": "اسم المالك مطلوب.",
+    "errorGeneric": "تعذّر حفظ المالك. حاول مرة أخرى.",
+    "contactTitle": "بيانات التواصل",
+    "commissionLabel": "نسبة الأتعاب",
+    "propertiesTitle": "عقارات المالك",
+    "propertiesCount": "{count} عقار",
+    "noProperties": "لا توجد عقارات مرتبطة بهذا المالك بعد."
   },
   "properties": {
     "title": "العقارات",
@@ -73,7 +102,9 @@
       "nationalAddress": "العنوان الوطني",
       "nationalAddressPlaceholder": "مثال: RRRD2929",
       "deedNumber": "رقم الصك",
-      "deedNumberPlaceholder": "اختياري"
+      "deedNumberPlaceholder": "اختياري",
+      "owner": "المالك",
+      "ownerNone": "بدون مالك"
     },
     "create": "حفظ العقار",
     "saveChanges": "حفظ التعديلات",

@@ -46,10 +46,39 @@
   "nav": {
     "overview": "Overview",
     "properties": "Properties",
+    "owners": "Owners",
     "leases": "Leases",
     "payments": "Payments",
     "maintenance": "Maintenance",
     "settings": "Settings"
+  },
+  "owners": {
+    "title": "Owners",
+    "subtitle": "Manage property owners, their contact details and fees",
+    "add": "Add owner",
+    "addFirst": "Add your first owner",
+    "emptyTitle": "No owners yet",
+    "emptyBody": "Add your property owners to link them to properties and issue statements later.",
+    "newTitle": "Add a new owner",
+    "newSubtitle": "Enter the owner's details. You can link their properties later.",
+    "fields": {
+      "name": "Full name",
+      "namePlaceholder": "e.g. Abdullah Mohammed",
+      "phone": "Phone",
+      "email": "Email",
+      "nationalId": "National ID",
+      "iban": "IBAN (for payouts)",
+      "commission": "Management fee (%)",
+      "notes": "Notes"
+    },
+    "create": "Save owner",
+    "errorName": "Owner name is required.",
+    "errorGeneric": "Could not save the owner. Please try again.",
+    "contactTitle": "Contact details",
+    "commissionLabel": "Fee",
+    "propertiesTitle": "Owner's properties",
+    "propertiesCount": "{count} properties",
+    "noProperties": "No properties are linked to this owner yet."
   },
   "properties": {
     "title": "Properties",
@@ -73,7 +102,9 @@
       "nationalAddress": "National address",
       "nationalAddressPlaceholder": "e.g. RRRD2929",
       "deedNumber": "Deed number",
-      "deedNumberPlaceholder": "optional"
+      "deedNumberPlaceholder": "optional",
+      "owner": "Owner",
+      "ownerNone": "No owner"
     },
     "create": "Save property",
     "saveChanges": "Save changes",

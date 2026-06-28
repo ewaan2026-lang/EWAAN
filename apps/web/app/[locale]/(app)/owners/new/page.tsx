@@ -1,31 +1,24 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { createClient } from "@/lib/supabase/server";
-import { PropertyForm } from "@/components/properties/property-form";
+import { OwnerForm } from "@/components/owners/owner-form";
 import { ArrowIcon } from "@/components/ui/icons";
 
 export const dynamic = "force-dynamic";
 
-export default async function NewPropertyPage({
+export default async function NewOwnerPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("properties");
+  const t = await getTranslations("owners");
   const tc = await getTranslations("common");
-
-  const supabase = await createClient();
-  const { data: owners } = await supabase
-    .from("owners")
-    .select("id, full_name")
-    .order("full_name", { ascending: true });
 
   return (
     <div className="mx-auto max-w-2xl">
       <Link
-        href="/properties"
+        href="/owners"
         className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-teal-900/60 transition hover:text-brand-teal-900"
       >
         <ArrowIcon className="h-4 w-4 rtl:rotate-180" />
@@ -42,7 +35,7 @@ export default async function NewPropertyPage({
           </p>
         </div>
         <div className="px-7 py-7">
-          <PropertyForm owners={owners ?? []} />
+          <OwnerForm />
         </div>
       </div>
     </div>

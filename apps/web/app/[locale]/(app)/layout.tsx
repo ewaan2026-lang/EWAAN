@@ -31,6 +31,7 @@ export default async function AppLayout({
   const nav = [
     { href: "/dashboard", label: t("overview") },
     { href: "/properties", label: t("properties") },
+    { href: "/owners", label: t("owners") },
     { href: "/leases", label: t("leases") },
     { href: "/payments", label: t("payments") },
     { href: "/maintenance", label: t("maintenance") },
