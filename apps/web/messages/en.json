@@ -11,7 +11,15 @@
     "loading": "Loading…",
     "language": "العربية",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "add": "Add",
+    "edit": "Edit",
+    "back": "Back",
+    "saving": "Saving…",
+    "optional": "optional",
+    "none": "—",
+    "all": "All",
+    "search": "Search"
   },
   "login": {
     "title": "Welcome back",
@@ -42,5 +50,85 @@
     "payments": "Payments",
     "maintenance": "Maintenance",
     "settings": "Settings"
+  },
+  "properties": {
+    "title": "Properties",
+    "subtitle": "Manage your buildings, compounds and their units",
+    "add": "Add property",
+    "addFirst": "Add your first property",
+    "emptyTitle": "No properties yet",
+    "emptyBody": "Add your first property to manage its units, leases and maintenance from one place.",
+    "count": "{count, plural, =0 {No properties} one {1 property} other {# properties}}",
+    "newTitle": "Add a new property",
+    "newSubtitle": "Enter the property's basic details. You can add units after saving.",
+    "editTitle": "Edit property",
+    "fields": {
+      "name": "Property name",
+      "namePlaceholder": "e.g. Al Waha Tower, Al Nakheel Compound",
+      "type": "Property type",
+      "city": "City",
+      "cityPlaceholder": "e.g. Riyadh",
+      "district": "District",
+      "districtPlaceholder": "e.g. Al Malqa",
+      "nationalAddress": "National address",
+      "nationalAddressPlaceholder": "e.g. RRRD2929",
+      "deedNumber": "Deed number",
+      "deedNumberPlaceholder": "optional"
+    },
+    "create": "Save property",
+    "saveChanges": "Save changes",
+    "errorName": "Property name is required.",
+    "errorGeneric": "Could not save the property. Please try again.",
+    "stats": {
+      "units": "Units",
+      "occupied": "Occupied",
+      "vacant": "Vacant",
+      "occupancy": "Occupancy"
+    },
+    "detailUnitsTitle": "Property units",
+    "detailInfoTitle": "Property details"
+  },
+  "units": {
+    "title": "Units",
+    "add": "Add unit",
+    "emptyTitle": "No units yet",
+    "emptyBody": "Add this property's units to track occupancy and leases.",
+    "newTitle": "Add a unit",
+    "fields": {
+      "number": "Unit number",
+      "numberPlaceholder": "e.g. 101, A-3",
+      "type": "Unit type",
+      "status": "Status",
+      "floor": "Floor",
+      "area": "Area (m²)",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "rent": "Base rent (SAR)",
+      "furnished": "Furnished"
+    },
+    "create": "Save unit",
+    "errorNumber": "Unit number is required.",
+    "errorGeneric": "Could not save the unit. Please try again.",
+    "labelFloor": "Floor {n}",
+    "labelArea": "{n} m²",
+    "labelBeds": "{n} beds",
+    "labelBaths": "{n} baths"
+  },
+  "propertyTypes": {
+    "residential_building": "Residential building",
+    "villa": "Villa",
+    "floor": "Floor",
+    "studio": "Studio",
+    "apartment": "Apartment",
+    "compound": "Compound",
+    "tower": "Tower",
+    "other": "Other"
+  },
+  "unitStatus": {
+    "vacant": "Vacant",
+    "occupied": "Occupied",
+    "reserved": "Reserved",
+    "maintenance": "Maintenance",
+    "unavailable": "Unavailable"
   }
 }
