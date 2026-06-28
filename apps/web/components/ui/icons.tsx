@@ -111,3 +111,22 @@ export function IdIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function GaugeIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 14 8.5 9.5" />
+      <path d="M3.5 16a9 9 0 1 1 17 0" />
+      <circle cx="12" cy="14" r="1.5" />
+    </svg>
+  );
+}
+
+export function KeyIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="7.5" cy="15.5" r="4.5" />
+      <path d="m10.5 12.5 7-7M16 6l2 2M19 3l2 2" />
+    </svg>
+  );
+}
