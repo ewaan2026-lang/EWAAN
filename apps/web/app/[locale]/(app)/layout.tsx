@@ -32,6 +32,7 @@ export default async function AppLayout({
     { href: "/dashboard", label: t("overview") },
     { href: "/properties", label: t("properties") },
     { href: "/owners", label: t("owners") },
+    { href: "/tenants", label: t("tenants") },
     { href: "/leases", label: t("leases") },
     { href: "/payments", label: t("payments") },
     { href: "/maintenance", label: t("maintenance") },

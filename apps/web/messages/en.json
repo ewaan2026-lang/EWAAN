@@ -47,10 +47,34 @@
     "overview": "Overview",
     "properties": "Properties",
     "owners": "Owners",
+    "tenants": "Tenants",
     "leases": "Leases",
     "payments": "Payments",
     "maintenance": "Maintenance",
     "settings": "Settings"
+  },
+  "tenants": {
+    "title": "Tenants",
+    "subtitle": "Tenant registry and contact details",
+    "add": "Add tenant",
+    "addFirst": "Add your first tenant",
+    "emptyTitle": "No tenants yet",
+    "emptyBody": "Add tenants to link them to leases and the tenant portal later.",
+    "newTitle": "Add a new tenant",
+    "newSubtitle": "Enter the tenant's details. You can link them to a lease later.",
+    "fields": {
+      "name": "Full name",
+      "namePlaceholder": "e.g. Sara Ahmed",
+      "phone": "Phone",
+      "email": "Email",
+      "nationalId": "National ID"
+    },
+    "create": "Save tenant",
+    "errorName": "Tenant name is required.",
+    "errorGeneric": "Could not save the tenant. Please try again.",
+    "contactTitle": "Contact details",
+    "leasesTitle": "Tenant's leases",
+    "noLeases": "No leases are linked to this tenant yet."
   },
   "owners": {
     "title": "Owners",
