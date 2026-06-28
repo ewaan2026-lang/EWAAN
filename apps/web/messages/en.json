@@ -169,6 +169,86 @@
     "labelBeds": "{n} beds",
     "labelBaths": "{n} baths"
   },
+  "leases": {
+    "title": "Leases",
+    "subtitle": "Lease contracts, their lifecycle and payment schedules",
+    "add": "Create lease",
+    "addFirst": "Create your first lease",
+    "emptyTitle": "No leases yet",
+    "emptyBody": "Create your first lease to link a unit to a tenant and auto-generate its payment schedule.",
+    "newTitle": "New lease",
+    "newSubtitle": "Pick the unit and tenant and set the terms. The payment schedule is generated automatically.",
+    "needUnitsTitle": "You need a unit and a tenant first",
+    "needUnitsBody": "To create a lease, add a property with at least one unit, and one tenant.",
+    "sections": {
+      "parties": "Parties",
+      "terms": "Lease terms",
+      "late": "Late fees & renewal"
+    },
+    "fields": {
+      "unit": "Unit",
+      "tenant": "Tenant",
+      "contractNumber": "Contract number",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "rent": "Installment amount (SAR)",
+      "frequency": "Payment frequency",
+      "deposit": "Deposit amount (SAR)",
+      "lateFeeType": "Late fee type",
+      "lateFeeValue": "Fee value",
+      "grace": "Grace days",
+      "autoRenew": "Auto-renew",
+      "status": "Lease status"
+    },
+    "create": "Create lease",
+    "errors": {
+      "unit": "Please select a unit.",
+      "tenant": "Please select a tenant.",
+      "dates": "Lease dates are invalid.",
+      "rent": "Installment amount is required.",
+      "generic": "Could not create the lease. Please try again."
+    },
+    "detailInfoTitle": "Lease details",
+    "scheduleTitle": "Payment schedule",
+    "scheduleCount": "{count} installments",
+    "noSchedule": "No installments for this lease.",
+    "labels": {
+      "rentPerInstallment": "Installment",
+      "deposit": "Deposit",
+      "frequency": "Frequency",
+      "term": "Term",
+      "lateFee": "Late fee",
+      "grace": "Grace days",
+      "unit": "Unit",
+      "tenant": "Tenant",
+      "installment": "Installment"
+    }
+  },
+  "leaseStatus": {
+    "draft": "Draft",
+    "active": "Active",
+    "expired": "Expired",
+    "terminated": "Terminated",
+    "renewed": "Renewed"
+  },
+  "paymentFrequency": {
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "semi_annual": "Semi-annual",
+    "annual": "Annual"
+  },
+  "lateFeeType": {
+    "none": "None",
+    "percentage": "Percentage %",
+    "fixed": "Fixed amount"
+  },
+  "scheduleStatus": {
+    "pending": "Due",
+    "invoiced": "Invoiced",
+    "paid": "Paid",
+    "overdue": "Overdue",
+    "waived": "Waived"
+  },
   "propertyTypes": {
     "residential_building": "Residential building",
     "villa": "Villa",
