@@ -41,6 +41,7 @@ export async function createPropertyAction(
   const district = String(formData.get("district") ?? "").trim();
   const nationalAddress = String(formData.get("national_address") ?? "").trim();
   const deedNumber = String(formData.get("deed_number") ?? "").trim();
+  const ownerId = String(formData.get("owner_id") ?? "").trim();
 
   const address =
     city || district ? { city: city || null, district: district || null } : null;
@@ -55,6 +56,7 @@ export async function createPropertyAction(
       address,
       national_address: nationalAddress || null,
       deed_number: deedNumber || null,
+      owner_id: ownerId || null,
     })
     .select("id")
     .single();
