@@ -197,6 +197,9 @@
     "emptyBody": "Create your first lease to link a unit to a tenant and auto-generate its payment schedule.",
     "newTitle": "New lease",
     "newSubtitle": "Pick the unit and tenant and set the terms. The payment schedule is generated automatically.",
+    "editTitle": "Edit lease",
+    "editNote": "Note: editing a lease does not regenerate its existing payment schedule.",
+    "terminate": "Terminate lease",
     "needUnitsTitle": "You need a unit and a tenant first",
     "needUnitsBody": "To create a lease, add a property with at least one unit, and one tenant.",
     "sections": {
