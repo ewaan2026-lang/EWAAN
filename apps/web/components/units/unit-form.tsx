@@ -24,6 +24,9 @@ export type UnitInitial = {
   bathrooms: number | null;
   base_rent: number | null;
   furnished: boolean;
+  features: string[];
+  listing_text: string | null;
+  has_water_tank: boolean;
 };
 
 export function UnitForm({
@@ -130,6 +133,38 @@ export function UnitForm({
           />
           {t("fields.furnished")}
         </label>
+
+        <label className="flex items-center gap-2.5 self-end pb-2.5 text-sm font-medium text-brand-teal-900">
+          <input
+            type="checkbox"
+            name="has_water_tank"
+            defaultChecked={initial?.has_water_tank}
+            className="h-4 w-4 rounded border-brand-teal/30 text-brand-teal focus:ring-brand-teal/30"
+          />
+          {t("waterTank")}
+        </label>
+      </div>
+
+      <div className="mt-4 space-y-4">
+        <Field label={t("features")} htmlFor="features" hint={t("featuresHint")}>
+          <input
+            id="features"
+            name="features"
+            defaultValue={initial?.features?.join("، ")}
+            placeholder={t("featuresPlaceholder")}
+            className={fieldClass}
+          />
+        </Field>
+        <Field label={t("listing")} htmlFor="listing_text" hint={tc("optional")}>
+          <textarea
+            id="listing_text"
+            name="listing_text"
+            rows={3}
+            defaultValue={initial?.listing_text ?? undefined}
+            placeholder={t("listingPlaceholder")}
+            className={`${fieldClass} resize-none`}
+          />
+        </Field>
       </div>
 
       {state.error ? (

@@ -45,14 +45,17 @@ export async function UnitCard({
   return (
     <div className="rounded-2xl border border-brand-teal/10 bg-white p-4 shadow-card transition hover:border-brand-teal/20">
       <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2.5">
+        <Link
+          href={`/properties/${propertyId}/units/${unit.id}`}
+          className="flex items-center gap-2.5 transition hover:opacity-80"
+        >
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-teal/8 text-brand-teal">
             <DoorIcon className="h-[18px] w-[18px]" />
           </span>
           <span className="text-[15px] font-extrabold text-brand-teal-900">
             {unit.unit_number}
           </span>
-        </div>
+        </Link>
         <UnitStatusBadge status={unit.status} />
       </div>
 

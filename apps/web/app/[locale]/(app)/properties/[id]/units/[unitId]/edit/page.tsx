@@ -19,7 +19,7 @@ export default async function EditUnitPage({
   const supabase = await createClient();
   const { data: unit } = await supabase
     .from("units")
-    .select("id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent, furnished")
+    .select("id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent, furnished, features, listing_text, has_water_tank")
     .eq("id", unitId)
     .maybeSingle();
 

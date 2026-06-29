@@ -244,7 +244,20 @@
     "labelFloor": "الدور {n}",
     "labelArea": "{n} م²",
     "labelBeds": "{n} غرف",
-    "labelBaths": "{n} حمّام"
+    "labelBaths": "{n} حمّام",
+    "features": "المميزات",
+    "featuresHint": "افصل بين المميزات بفاصلة",
+    "featuresPlaceholder": "مثال: مكيّف، مطبخ راكب، شرفة",
+    "listing": "صيغة الإعلان",
+    "listingPlaceholder": "نص تسويقي للإعلان عن الوحدة…",
+    "generateListing": "توليد تلقائي",
+    "copy": "نسخ",
+    "copied": "تم النسخ",
+    "waterTank": "خزان مياه",
+    "hasTank": "يوجد خزان",
+    "detailInfoTitle": "تفاصيل الوحدة",
+    "floorPlanTitle": "مخطط الوحدة",
+    "rentLabel": "الإيجار"
   },
   "leases": {
     "title": "العقود",
