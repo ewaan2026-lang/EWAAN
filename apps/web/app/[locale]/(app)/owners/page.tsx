@@ -4,7 +4,10 @@ import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/ui/page-header";
 import { EmptyState } from "@/components/ui/empty-state";
 import { UsersIcon, PlusIcon } from "@/components/ui/icons";
-import { OwnerCard } from "@/components/owners/owner-card";
+import {
+  OwnersExplorer,
+  type OwnerItem,
+} from "@/components/owners/owners-explorer";
 
 export const dynamic = "force-dynamic";
 
@@ -18,15 +21,13 @@ export default async function OwnersPage({
   const t = await getTranslations("owners");
 
   const supabase = await createClient();
-
-  const { data: owners } = await supabase
-    .from("owners")
-    .select("id, full_name, phone, email, commission_rate")
-    .order("created_at", { ascending: false });
-
-  const { data: properties } = await supabase
-    .from("properties")
-    .select("owner_id");
+  const [{ data: owners }, { data: properties }] = await Promise.all([
+    supabase
+      .from("owners")
+      .select("id, full_name, phone, email, commission_rate")
+      .order("created_at", { ascending: false }),
+    supabase.from("properties").select("owner_id"),
+  ]);
 
   const countByOwner = new Map<string, number>();
   for (const p of properties ?? []) {
@@ -34,7 +35,15 @@ export default async function OwnersPage({
       countByOwner.set(p.owner_id, (countByOwner.get(p.owner_id) ?? 0) + 1);
   }
 
-  const list = owners ?? [];
+  const list: OwnerItem[] = (owners ?? []).map((o) => ({
+    id: o.id,
+    full_name: o.full_name,
+    phone: o.phone,
+    email: o.email,
+    commission_rate: o.commission_rate,
+    propertyCount: countByOwner.get(o.id) ?? 0,
+  }));
+
   const addButton = (label: string) => (
     <Link
       href="/owners/new"
@@ -61,15 +70,7 @@ export default async function OwnersPage({
           action={addButton(t("addFirst"))}
         />
       ) : (
-        <div className="stagger grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((o) => (
-            <OwnerCard
-              key={o.id}
-              owner={o}
-              propertyCount={countByOwner.get(o.id) ?? 0}
-            />
-          ))}
-        </div>
+        <OwnersExplorer owners={list} locale={locale} />
       )}
     </div>
   );

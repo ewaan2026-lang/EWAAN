@@ -220,3 +220,55 @@ export function ChartIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function SearchIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}
+
+export function GridIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <rect x="3" y="3" width="7" height="7" rx="1.5" />
+      <rect x="14" y="3" width="7" height="7" rx="1.5" />
+      <rect x="3" y="14" width="7" height="7" rx="1.5" />
+      <rect x="14" y="14" width="7" height="7" rx="1.5" />
+    </svg>
+  );
+}
+
+export function ListIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+    </svg>
+  );
+}
+
+export function EyeIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+// أيقونة واتساب (مملوءة).
+export function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={20}
+      height={20}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.34 4.96L2 22l5.2-1.36a9.92 9.92 0 0 0 4.84 1.24h.01c5.5 0 9.96-4.46 9.96-9.96 0-2.66-1.04-5.16-2.92-7.04A9.9 9.9 0 0 0 12.04 2Zm0 1.83c2.18 0 4.23.85 5.77 2.39a8.1 8.1 0 0 1 2.39 5.77c0 4.5-3.66 8.16-8.17 8.16a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.09.81.82-3.01-.2-.31a8.13 8.13 0 0 1-1.25-4.34c0-4.5 3.66-8.16 8.16-8.16Zm-3.2 4.39c-.15 0-.39.06-.6.28-.2.22-.79.77-.79 1.88 0 1.1.81 2.17.92 2.32.11.15 1.57 2.49 3.88 3.4 1.92.76 2.31.61 2.73.57.42-.04 1.35-.55 1.54-1.08.19-.53.19-.99.13-1.08-.05-.1-.2-.15-.42-.26-.22-.11-1.35-.67-1.56-.74-.21-.08-.36-.11-.51.11-.15.22-.58.74-.72.89-.13.15-.26.17-.49.06-.22-.11-.94-.35-1.79-1.11-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.23-.69-1.68-.18-.44-.37-.38-.51-.39h-.43Z" />
+    </svg>
+  );
+}
