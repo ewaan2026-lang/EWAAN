@@ -564,6 +564,16 @@
     "failedBody": "We couldn't confirm the payment. Please try again or contact management.",
     "backToPortal": "Back to portal"
   },
+  "invite": {
+    "title": "Invite a member by email",
+    "subtitle": "Send a join link to a colleague to join your organization",
+    "send": "Send invite",
+    "sending": "Sending…",
+    "sent": "Invitation sent",
+    "notConfigured": "Email not set up yet",
+    "invalid": "Invalid email",
+    "error": "Could not send the invitation"
+  },
   "audit": {
     "title": "Activity log",
     "subtitle": "Who did what and when across the organization",

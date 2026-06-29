@@ -12,6 +12,7 @@ import {
   UnitTypesSection,
   type UnitTypeRow,
 } from "@/components/settings/unit-types-section";
+import { InviteForm } from "@/components/settings/invite-form";
 import { SettingsIcon } from "@/components/ui/icons";
 
 export const dynamic = "force-dynamic";
@@ -104,6 +105,7 @@ export default async function SettingsPage({
 
           <UnitTypesSection types={unitTypes} locale={locale} />
           <MembersSection members={memberRows} roles={roleOptions} locale={locale} />
+          <InviteForm />
         </>
       ) : null}
     </div>
