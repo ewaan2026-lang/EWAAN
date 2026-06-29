@@ -465,6 +465,21 @@
     "errorGeneric": "تعذّر إرسال الطلب. حاول مرة أخرى.",
     "submitted": "تم إرسال طلبك بنجاح."
   },
+  "meters": {
+    "title": "العدّادات",
+    "add": "إضافة عدّاد",
+    "type": "النوع",
+    "number": "رقم العدّاد",
+    "electricity": "كهرباء",
+    "water": "ماء",
+    "latestReading": "آخر قراءة",
+    "addReading": "إضافة قراءة",
+    "reading": "القراءة",
+    "date": "التاريخ",
+    "empty": "لا توجد عدّادات بعد.",
+    "noReadings": "لا قراءات",
+    "save": "حفظ"
+  },
   "media": {
     "photos": "الصور",
     "floorPlans": "المخططات",

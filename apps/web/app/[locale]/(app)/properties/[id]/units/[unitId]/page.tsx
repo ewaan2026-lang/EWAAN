@@ -7,6 +7,7 @@ import { DeleteButton } from "@/components/ui/delete-button";
 import { deleteUnitAction } from "@/lib/actions/units";
 import { MediaGallery } from "@/components/media/media-gallery";
 import { ListingCopy } from "@/components/units/listing-copy";
+import { MetersSection } from "@/components/units/meters-section";
 import { Badge } from "@/components/ui/badge";
 import { ArrowIcon, PencilIcon } from "@/components/ui/icons";
 
@@ -144,6 +145,11 @@ export default async function UnitDetailPage({
           redirectPath={redirectPath}
           locale={locale}
         />
+      </div>
+
+      {/* العدّادات */}
+      <div className="mb-6">
+        <MetersSection unitId={unit.id} locale={locale} redirectPath={redirectPath} />
       </div>
     </div>
   );

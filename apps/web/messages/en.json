@@ -465,6 +465,21 @@
     "errorGeneric": "Could not submit the request. Please try again.",
     "submitted": "Your request was submitted successfully."
   },
+  "meters": {
+    "title": "Meters",
+    "add": "Add meter",
+    "type": "Type",
+    "number": "Meter number",
+    "electricity": "Electricity",
+    "water": "Water",
+    "latestReading": "Latest reading",
+    "addReading": "Add reading",
+    "reading": "Reading",
+    "date": "Date",
+    "empty": "No meters yet.",
+    "noReadings": "No readings",
+    "save": "Save"
+  },
   "media": {
     "photos": "Photos",
     "floorPlans": "Floor plans",
