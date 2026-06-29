@@ -138,7 +138,17 @@
     "commissionLabel": "Fee",
     "propertiesTitle": "Owner's properties",
     "propertiesCount": "{count} properties",
-    "noProperties": "No properties are linked to this owner yet."
+    "noProperties": "No properties are linked to this owner yet.",
+    "viewStatement": "Statement",
+    "statementTitle": "Owner statement",
+    "statementSubtitle": "Financial summary to date",
+    "grossIncome": "Gross collected income",
+    "expenses": "Maintenance expenses",
+    "managementFee": "Management fee",
+    "netPayout": "Net payout to owner",
+    "outstandingLabel": "Outstanding (uncollected)",
+    "breakdownTitle": "Breakdown",
+    "noFinance": "No financial activity for this owner yet."
   },
   "properties": {
     "title": "Properties",

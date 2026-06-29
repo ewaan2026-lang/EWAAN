@@ -138,7 +138,17 @@
     "commissionLabel": "نسبة الأتعاب",
     "propertiesTitle": "عقارات المالك",
     "propertiesCount": "{count} عقار",
-    "noProperties": "لا توجد عقارات مرتبطة بهذا المالك بعد."
+    "noProperties": "لا توجد عقارات مرتبطة بهذا المالك بعد.",
+    "viewStatement": "كشف الحساب",
+    "statementTitle": "كشف حساب المالك",
+    "statementSubtitle": "ملخّص مالي حتى تاريخه",
+    "grossIncome": "إجمالي الدخل المُحصّل",
+    "expenses": "مصروفات الصيانة",
+    "managementFee": "أتعاب الإدارة",
+    "netPayout": "صافي العائد للمالك",
+    "outstandingLabel": "المستحق غير المُحصّل",
+    "breakdownTitle": "التفاصيل",
+    "noFinance": "لا توجد حركات مالية لهذا المالك بعد."
   },
   "properties": {
     "title": "العقارات",

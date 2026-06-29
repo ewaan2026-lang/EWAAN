@@ -13,6 +13,7 @@ import {
   MailIcon,
   IdIcon,
   PencilIcon,
+  ChartIcon,
 } from "@/components/ui/icons";
 import {
   PropertyCard,
@@ -110,6 +111,13 @@ export default async function OwnerDetailPage({
         </div>
 
         <div className="flex items-center gap-2 sm:ms-auto">
+          <Link
+            href={`/owners/${id}/statement`}
+            className="inline-flex items-center gap-2 rounded-xl bg-brand-teal px-4 py-2.5 text-sm font-bold text-white shadow-card transition hover:bg-brand-teal-700"
+          >
+            <ChartIcon className="h-4 w-4" />
+            {t("viewStatement")}
+          </Link>
           <Link
             href={`/owners/${id}/edit`}
             className="inline-flex items-center gap-2 rounded-xl border border-brand-teal/15 bg-white px-4 py-2.5 text-sm font-bold text-brand-teal-900 shadow-card transition hover:border-brand-teal/35 hover:bg-brand-teal/5"
