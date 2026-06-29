@@ -6,6 +6,7 @@ import {
   LayersIcon,
   CardIcon,
   WrenchIcon,
+  ChartIcon,
   SettingsIcon,
 } from "@/components/ui/icons";
 
@@ -24,6 +25,7 @@ export const NAV: NavItem[] = [
   { key: "leases", href: "/leases", Icon: LayersIcon },
   { key: "payments", href: "/payments", Icon: CardIcon },
   { key: "maintenance", href: "/maintenance", Icon: WrenchIcon },
+  { key: "reports", href: "/reports", Icon: ChartIcon },
   { key: "settings", href: "/settings", Icon: SettingsIcon },
 ];
 

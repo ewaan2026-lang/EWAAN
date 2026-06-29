@@ -68,7 +68,24 @@
     "leases": "العقود",
     "payments": "المدفوعات",
     "maintenance": "الصيانة",
+    "reports": "التقارير",
     "settings": "الإعدادات"
+  },
+  "reports": {
+    "title": "التقارير والتحليلات",
+    "subtitle": "نظرة مالية وتشغيلية على محفظتك",
+    "kpi": {
+      "collected": "إجمالي المُحصّل",
+      "outstanding": "إجمالي المستحق",
+      "occupancy": "نسبة الإشغال",
+      "activeLeases": "العقود النشطة",
+      "depositsHeld": "التأمينات المحتجزة",
+      "expectedAnnual": "الإيراد السنوي المتوقّع"
+    },
+    "revenueTitle": "الإيراد المُحصّل (آخر 6 أشهر)",
+    "unitsByStatusTitle": "الوحدات حسب الحالة",
+    "leasesByStatusTitle": "العقود حسب الحالة",
+    "noData": "لا توجد بيانات كافية بعد."
   },
   "tenants": {
     "title": "المستأجرون",
