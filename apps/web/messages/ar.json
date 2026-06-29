@@ -398,6 +398,29 @@
     "overdue": "متأخّرة",
     "waived": "معفاة"
   },
+  "portal": {
+    "title": "بوابة المستأجر",
+    "welcome": "مرحباً، {name}",
+    "notTenantTitle": "لا توجد بيانات مستأجر",
+    "notTenantBody": "حسابك غير مرتبط بأي عقد بعد. تواصل مع إدارة الأملاك لربط حسابك.",
+    "leasesTitle": "عقودي",
+    "paymentsTitle": "جدول دفعاتي",
+    "requestsTitle": "طلبات الصيانة",
+    "newRequestTitle": "طلب صيانة جديد",
+    "submit": "إرسال الطلب",
+    "noLeases": "لا توجد عقود مرتبطة بحسابك.",
+    "noPayments": "لا توجد دفعات.",
+    "noRequests": "لا توجد طلبات صيانة.",
+    "fields": {
+      "title": "عنوان الطلب",
+      "titlePlaceholder": "مثال: تسريب ماء في المطبخ",
+      "description": "وصف المشكلة",
+      "priority": "الأولوية"
+    },
+    "errorTitle": "عنوان الطلب مطلوب.",
+    "errorGeneric": "تعذّر إرسال الطلب. حاول مرة أخرى.",
+    "submitted": "تم إرسال طلبك بنجاح."
+  },
   "propertyTypes": {
     "residential_building": "مبنى سكني",
     "villa": "فيلا",
