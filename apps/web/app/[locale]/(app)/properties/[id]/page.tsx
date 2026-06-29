@@ -8,6 +8,7 @@ import { UnitCard, type UnitCardData } from "@/components/units/unit-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { MediaGallery } from "@/components/media/media-gallery";
+import { HeroImage } from "@/components/media/hero-image";
 import { PropertyReminders } from "@/components/properties/property-reminders";
 import { deletePropertyAction } from "@/lib/actions/properties";
 import { ArrowIcon, DoorIcon, MapPinIcon, PencilIcon, WhatsAppIcon } from "@/components/ui/icons";
@@ -70,6 +71,8 @@ export default async function PropertyDetailPage({
         <ArrowIcon className="h-4 w-4 rtl:rotate-180" />
         {t("title")}
       </Link>
+
+      <HeroImage entityType="property" entityId={id} />
 
       {/* ترويسة العقار */}
       <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
