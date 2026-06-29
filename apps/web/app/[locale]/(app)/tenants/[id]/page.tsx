@@ -59,7 +59,7 @@ export default async function TenantDetailPage({
   if (tenant.national_id) contacts.push({ icon: <IdIcon className="h-4 w-4" />, value: tenant.national_id });
 
   const fmtRent = (n: number) =>
-    new Intl.NumberFormat(locale === "ar" ? "ar-SA" : "en-US", {
+    new Intl.NumberFormat(locale === "ar" ? "ar-SA-u-nu-latn" : "en-US", {
       style: "currency",
       currency: "SAR",
       maximumFractionDigits: 0,

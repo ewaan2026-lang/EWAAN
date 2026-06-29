@@ -4,7 +4,10 @@ import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/ui/page-header";
 import { EmptyState } from "@/components/ui/empty-state";
 import { UsersIcon, PlusIcon } from "@/components/ui/icons";
-import { TenantCard } from "@/components/tenants/tenant-card";
+import {
+  TenantsExplorer,
+  type TenantItem,
+} from "@/components/tenants/tenants-explorer";
 
 export const dynamic = "force-dynamic";
 
@@ -18,12 +21,31 @@ export default async function TenantsPage({
   const t = await getTranslations("tenants");
 
   const supabase = await createClient();
-  const { data: tenants } = await supabase
-    .from("tenants")
-    .select("id, full_name, phone, email, national_id")
-    .order("created_at", { ascending: false });
+  const [{ data: tenants }, { data: leases }] = await Promise.all([
+    supabase
+      .from("tenants")
+      .select("id, full_name, phone, email")
+      .order("created_at", { ascending: false }),
+    supabase.from("leases").select("tenant_id, status"),
+  ]);
 
-  const list = tenants ?? [];
+  const leaseCount = new Map<string, number>();
+  const activeCount = new Map<string, number>();
+  for (const l of leases ?? []) {
+    leaseCount.set(l.tenant_id, (leaseCount.get(l.tenant_id) ?? 0) + 1);
+    if (l.status === "active")
+      activeCount.set(l.tenant_id, (activeCount.get(l.tenant_id) ?? 0) + 1);
+  }
+
+  const list: TenantItem[] = (tenants ?? []).map((x) => ({
+    id: x.id,
+    full_name: x.full_name,
+    phone: x.phone,
+    email: x.email,
+    leaseCount: leaseCount.get(x.id) ?? 0,
+    activeLeases: activeCount.get(x.id) ?? 0,
+  }));
+
   const addButton = (label: string) => (
     <Link
       href="/tenants/new"
@@ -50,11 +72,7 @@ export default async function TenantsPage({
           action={addButton(t("addFirst"))}
         />
       ) : (
-        <div className="stagger grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((tn) => (
-            <TenantCard key={tn.id} tenant={tn} />
-          ))}
-        </div>
+        <TenantsExplorer tenants={list} locale={locale} />
       )}
     </div>
   );

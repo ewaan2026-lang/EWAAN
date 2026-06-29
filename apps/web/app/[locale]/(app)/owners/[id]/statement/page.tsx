@@ -14,7 +14,7 @@ export default async function OwnerStatementPage({
   const { locale, id } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("owners");
-  const intlLocale = locale === "ar" ? "ar-SA" : "en-US";
+  const intlLocale = locale === "ar" ? "ar-SA-u-nu-latn" : "en-US";
 
   const supabase = await createClient();
   const { data: owner } = await supabase

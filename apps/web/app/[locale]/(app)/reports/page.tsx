@@ -15,7 +15,7 @@ export default async function ReportsPage({
   const t = await getTranslations("reports");
   const tus = await getTranslations("unitStatus");
   const tls = await getTranslations("leaseStatus");
-  const intlLocale = locale === "ar" ? "ar-SA" : "en-US";
+  const intlLocale = locale === "ar" ? "ar-SA-u-nu-latn" : "en-US";
 
   const supabase = await createClient();
   const [{ data: schedules }, { data: payments }, { data: units }, { data: leases }, { data: deposits }] =

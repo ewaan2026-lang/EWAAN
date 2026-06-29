@@ -64,7 +64,7 @@ export default async function PaymentsPage({
   const overdue = rows.filter((r) => r.isOverdue).reduce((a, r) => a + r.amount, 0);
 
   const fmt = (n: number) =>
-    new Intl.NumberFormat(locale === "ar" ? "ar-SA" : "en-US", {
+    new Intl.NumberFormat(locale === "ar" ? "ar-SA-u-nu-latn" : "en-US", {
       style: "currency",
       currency: "SAR",
       maximumFractionDigits: 0,

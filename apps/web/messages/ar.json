@@ -109,7 +109,22 @@
     "errorGeneric": "تعذّر حفظ المستأجر. حاول مرة أخرى.",
     "contactTitle": "بيانات التواصل",
     "leasesTitle": "عقود المستأجر",
-    "noLeases": "لا توجد عقود مرتبطة بهذا المستأجر بعد."
+    "noLeases": "لا توجد عقود مرتبطة بهذا المستأجر بعد.",
+    "search": "ابحث بالاسم أو الجوال أو البريد…",
+    "sortName": "الاسم (أبجدي)",
+    "sortMostLeases": "الأكثر عقوداً",
+    "filterAll": "الكل",
+    "filterActive": "لديهم عقد نشط",
+    "filterNoLease": "بلا عقود",
+    "results": "{count} مستأجر",
+    "noResults": "لا توجد نتائج مطابقة لبحثك.",
+    "statsTenants": "إجمالي المستأجرين",
+    "statsLeases": "إجمالي العقود",
+    "statsActive": "عقود نشطة",
+    "actionCall": "اتصال",
+    "actionEmail": "بريد",
+    "actionWhatsapp": "واتساب",
+    "leasesCount": "{count} عقد"
   },
   "owners": {
     "title": "الملّاك",

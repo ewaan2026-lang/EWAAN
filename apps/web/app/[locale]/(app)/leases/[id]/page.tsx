@@ -61,7 +61,7 @@ export default async function LeaseDetailPage({
   }
 
   const fmt = (n: number) =>
-    new Intl.NumberFormat(locale === "ar" ? "ar-SA" : "en-US", {
+    new Intl.NumberFormat(locale === "ar" ? "ar-SA-u-nu-latn" : "en-US", {
       style: "currency",
       currency: "SAR",
       maximumFractionDigits: 0,
