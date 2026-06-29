@@ -548,6 +548,13 @@
       "cancelled": "ملغاة"
     }
   },
+  "notifications": {
+    "remind": "تذكير",
+    "sent": "تم الإرسال",
+    "notConfigured": "البريد غير مُعدّ",
+    "noEmail": "لا بريد للمستأجر",
+    "failed": "فشل الإرسال"
+  },
   "portal": {
     "title": "بوابة المستأجر",
     "portalLabel": "بوابة المستأجر",
