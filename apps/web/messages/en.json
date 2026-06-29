@@ -314,7 +314,20 @@
     "save": "Save changes",
     "saved": "Changes saved.",
     "errorName": "Organization name is required.",
-    "errorGeneric": "Could not save. Please try again."
+    "errorGeneric": "Could not save. Please try again.",
+    "membersTitle": "Members & roles",
+    "membersSubtitle": "Your organization's members and their roles",
+    "memberRole": "Role",
+    "memberYou": "You",
+    "memberRemove": "Remove",
+    "memberSave": "Save",
+    "noMembers": "No members."
+  },
+  "roleNames": {
+    "admin": "Admin",
+    "owner": "Owner",
+    "staff": "Staff",
+    "tenant": "Tenant"
   },
   "maintenance": {
     "title": "Maintenance",
