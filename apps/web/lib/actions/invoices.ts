@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveOrgId } from "@/lib/org";
+import { logAudit } from "@/lib/audit";
 import { zatcaQrPayload } from "@/lib/zatca";
 import type { Enums } from "@ewaan/db";
 
@@ -98,6 +99,13 @@ export async function createInvoiceAction(
     .single();
 
   if (error || !data) return { error: "generic" };
+
+  await logAudit({
+    action: "create",
+    entityType: "invoice",
+    entityId: data.id,
+    summary: `أصدر فاتورة ${invoiceNumber} بإجمالي ${total} ر.س`,
+  });
 
   revalidatePath(`/${locale}/invoices`);
   redirect(`/${locale}/invoices/${data.id}`);

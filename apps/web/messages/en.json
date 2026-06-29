@@ -75,6 +75,7 @@
     "invoices": "Invoices",
     "maintenance": "Maintenance",
     "reports": "Reports",
+    "audit": "Activity log",
     "alerts": "Alerts",
     "subscriptions": "Subscription",
     "settings": "Settings"
@@ -562,6 +563,14 @@
     "failedTitle": "Payment incomplete",
     "failedBody": "We couldn't confirm the payment. Please try again or contact management.",
     "backToPortal": "Back to portal"
+  },
+  "audit": {
+    "title": "Activity log",
+    "subtitle": "Who did what and when across the organization",
+    "emptyTitle": "No activity yet",
+    "emptyBody": "Actions (create, delete, invoices, payments) will appear here as they happen.",
+    "by": "by",
+    "system": "System"
   },
   "notifications": {
     "remind": "Remind",

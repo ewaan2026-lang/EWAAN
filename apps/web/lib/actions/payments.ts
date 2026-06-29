@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { logAudit } from "@/lib/audit";
 
 // تسجيل تحصيل دفعة مجدولة: ينشئ سجل دفعة ويعلّم الدفعة "مدفوعة".
 export async function recordPaymentAction(formData: FormData): Promise<void> {
@@ -38,6 +39,13 @@ export async function recordPaymentAction(formData: FormData): Promise<void> {
     .from("payment_schedules")
     .update({ status: "paid" })
     .eq("id", scheduleId);
+
+  await logAudit({
+    action: "payment",
+    entityType: "payment_schedule",
+    entityId: scheduleId,
+    summary: `سجّل تحصيل دفعة بقيمة ${schedule.amount} ر.س`,
+  });
 
   revalidatePath(`/${locale}/payments`);
 }
