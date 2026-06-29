@@ -29,8 +29,9 @@ export default async function LoginPage({
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
       {/* اللوحة التعريفية (سطح المكتب) */}
-      <section className="gradient-pan relative hidden overflow-hidden bg-gradient-to-br from-brand-teal-900 via-brand-teal-900 to-brand-teal p-12 text-white lg:flex lg:flex-col lg:justify-between">
-        <div className="float-slow pointer-events-none absolute -end-24 -top-24 h-80 w-80 rounded-full bg-brand-teal/40 blur-3xl" />
+      <section className="gradient-pan relative hidden overflow-hidden bg-gradient-to-br from-brand-night via-brand-ink to-brand-teal-900 p-12 text-white lg:flex lg:flex-col lg:justify-between">
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-brand-gold to-transparent opacity-70" />
+        <div className="float-slow pointer-events-none absolute -end-24 -top-24 h-80 w-80 rounded-full bg-brand-gold/15 blur-3xl" />
         <div className="float-slower pointer-events-none absolute -bottom-24 -start-16 h-72 w-72 rounded-full bg-brand-brass/20 blur-3xl" />
 
         <div className="relative flex items-center gap-3">
@@ -75,7 +76,8 @@ export default async function LoginPage({
             <p className="mt-1 text-sm text-brand-teal-900/60">{t("tagline")}</p>
           </div>
 
-          <div className="rounded-3xl border border-brand-teal/10 bg-white/80 p-7 shadow-card backdrop-blur sm:p-8">
+          <div className="relative overflow-hidden rounded-3xl border border-brand-teal/10 bg-white/80 p-7 shadow-luxe backdrop-blur sm:p-8">
+            <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-90" />
             <div className="mb-6">
               <h2 className="text-xl font-extrabold text-brand-teal-900">{tl("title")}</h2>
               <p className="mt-1 text-sm text-brand-teal-900/60">{tl("subtitle")}</p>

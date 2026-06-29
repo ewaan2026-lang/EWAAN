@@ -122,6 +122,7 @@ export default async function LeaseDetailPage({
       </Link>
 
       <div className="mb-7 flex flex-wrap items-center gap-3">
+        <span className="h-9 w-1 shrink-0 rounded-full bg-gradient-to-b from-brand-gold to-brand-brass" />
         <h1 className="text-2xl font-extrabold tracking-tight text-brand-teal-900 sm:text-[28px]" dir="ltr">
           {lease.contract_number ?? `#${lease.id.slice(0, 8)}`}
         </h1>

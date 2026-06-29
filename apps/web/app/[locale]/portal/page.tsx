@@ -74,10 +74,18 @@ export default async function PortalPage({
 
   return (
     <div className="space-y-8">
-      <header>
-        <h1 className="text-2xl font-extrabold tracking-tight text-brand-teal-900 sm:text-[28px]">
-          {t("welcome", { name: tenant.full_name })}
-        </h1>
+      <header className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-night via-brand-ink to-brand-teal-900 p-7 text-white shadow-luxe sm:p-8">
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-brand-gold to-transparent opacity-70" />
+        <div className="float-slow pointer-events-none absolute -end-20 -top-24 h-64 w-64 rounded-full bg-brand-gold/15 blur-3xl" />
+        <div className="relative">
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-brand-gold">
+            {t("portalLabel")}
+          </p>
+          <h1 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            {t("welcome", { name: tenant.full_name })}
+          </h1>
+          <div className="mt-4 h-px w-24 bg-gradient-to-r from-brand-gold to-transparent" />
+        </div>
       </header>
 
       {/* عقودي */}
