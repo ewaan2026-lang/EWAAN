@@ -69,7 +69,18 @@
     "payments": "المدفوعات",
     "maintenance": "الصيانة",
     "reports": "التقارير",
+    "alerts": "التنبيهات",
     "settings": "الإعدادات"
+  },
+  "alerts": {
+    "title": "التنبيهات",
+    "subtitle": "أهم ما يحتاج انتباهك الآن",
+    "overdueTitle": "دفعات متأخّرة",
+    "newRequestsTitle": "طلبات صيانة جديدة",
+    "expiringTitle": "عقود تنتهي قريباً",
+    "none": "لا توجد تنبيهات — كل شيء على ما يرام ✅",
+    "expiresOn": "تنتهي {date}",
+    "dueOn": "مستحقّة {date}"
   },
   "reports": {
     "title": "التقارير والتحليلات",
