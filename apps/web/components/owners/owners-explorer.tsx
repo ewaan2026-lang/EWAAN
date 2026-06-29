@@ -270,7 +270,8 @@ function QuickActions({ o, t }: { o: OwnerItem; t: TFn }) {
 
 function OwnerGridCard({ o, t }: { o: OwnerItem; t: TFn }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card transition hover:-translate-y-0.5 hover:border-brand-teal/25 hover:shadow-lg">
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:border-brand-brass/35 hover:shadow-luxe">
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-0 transition group-hover:opacity-90" />
       <div className="flex items-start gap-3.5">
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-teal to-brand-teal-900 text-base font-extrabold text-white" dir="ltr">
           {initials(o.full_name)}
