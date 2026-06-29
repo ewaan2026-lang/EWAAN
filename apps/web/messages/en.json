@@ -21,7 +21,12 @@
     "all": "All",
     "search": "Search",
     "comingSoonTitle": "Coming soon",
-    "comingSoonBody": "This section is under development and will be available in an upcoming update."
+    "comingSoonBody": "This section is under development and will be available in an upcoming update.",
+    "delete": "Delete",
+    "deleting": "Deleting…",
+    "deleteConfirm": "Are you sure you want to delete this? This action cannot be undone.",
+    "saveChanges": "Save changes",
+    "actions": "Actions"
   },
   "login": {
     "title": "Welcome back",

@@ -1,6 +1,9 @@
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { UnitStatusBadge } from "@/components/units/status-badge";
-import { DoorIcon } from "@/components/ui/icons";
+import { DeleteButton } from "@/components/ui/delete-button";
+import { deleteUnitAction } from "@/lib/actions/units";
+import { DoorIcon, PencilIcon } from "@/components/ui/icons";
 import type { Enums } from "@ewaan/db";
 
 export type UnitCardData = {
@@ -17,9 +20,11 @@ export type UnitCardData = {
 export async function UnitCard({
   unit,
   locale,
+  propertyId,
 }: {
   unit: UnitCardData;
   locale: string;
+  propertyId: string;
 }) {
   const t = await getTranslations("units");
   const meta: string[] = [];
@@ -64,11 +69,31 @@ export async function UnitCard({
         </div>
       ) : null}
 
-      {rent ? (
-        <p className="mt-3 text-sm font-bold text-brand-teal-900" dir="ltr">
-          {rent}
-        </p>
-      ) : null}
+      <div className="mt-3 flex items-center justify-between gap-2 border-t border-brand-teal/8 pt-3">
+        {rent ? (
+          <p className="text-sm font-bold text-brand-teal-900" dir="ltr">
+            {rent}
+          </p>
+        ) : (
+          <span />
+        )}
+        <div className="flex items-center gap-1">
+          <Link
+            href={`/properties/${propertyId}/units/${unit.id}/edit`}
+            aria-label={t("add")}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-brand-teal-900/45 transition hover:bg-brand-teal/5 hover:text-brand-teal-900"
+          >
+            <PencilIcon className="h-4 w-4" />
+          </Link>
+          <DeleteButton
+            action={deleteUnitAction}
+            id={unit.id}
+            locale={locale}
+            variant="icon"
+            extra={{ property_id: propertyId }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

@@ -19,17 +19,7 @@ const PROPERTY_TYPES: Enums<"property_type">[] = [
   "other",
 ];
 
-export async function createPropertyAction(
-  locale: string,
-  _prevState: PropertyState,
-  formData: FormData,
-): Promise<PropertyState> {
-  const name = String(formData.get("name") ?? "").trim();
-  if (!name) return { error: "name" };
-
-  const orgId = await getActiveOrgId();
-  if (!orgId) return { error: "generic" };
-
+function parseProperty(formData: FormData) {
   const typeRaw = String(formData.get("property_type") ?? "");
   const property_type: Enums<"property_type"> = PROPERTY_TYPES.includes(
     typeRaw as Enums<"property_type">,
@@ -43,21 +33,31 @@ export async function createPropertyAction(
   const deedNumber = String(formData.get("deed_number") ?? "").trim();
   const ownerId = String(formData.get("owner_id") ?? "").trim();
 
-  const address =
-    city || district ? { city: city || null, district: district || null } : null;
+  return {
+    property_type,
+    address:
+      city || district ? { city: city || null, district: district || null } : null,
+    national_address: nationalAddress || null,
+    deed_number: deedNumber || null,
+    owner_id: ownerId || null,
+  };
+}
+
+export async function createPropertyAction(
+  locale: string,
+  _prevState: PropertyState,
+  formData: FormData,
+): Promise<PropertyState> {
+  const name = String(formData.get("name") ?? "").trim();
+  if (!name) return { error: "name" };
+
+  const orgId = await getActiveOrgId();
+  if (!orgId) return { error: "generic" };
 
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("properties")
-    .insert({
-      organization_id: orgId,
-      name,
-      property_type,
-      address,
-      national_address: nationalAddress || null,
-      deed_number: deedNumber || null,
-      owner_id: ownerId || null,
-    })
+    .insert({ organization_id: orgId, name, ...parseProperty(formData) })
     .select("id")
     .single();
 
@@ -65,4 +65,39 @@ export async function createPropertyAction(
 
   revalidatePath(`/${locale}/properties`);
   redirect(`/${locale}/properties/${data.id}`);
+}
+
+export async function updatePropertyAction(
+  locale: string,
+  id: string,
+  _prevState: PropertyState,
+  formData: FormData,
+): Promise<PropertyState> {
+  const name = String(formData.get("name") ?? "").trim();
+  if (!name) return { error: "name" };
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("properties")
+    .update({ name, ...parseProperty(formData) })
+    .eq("id", id);
+
+  if (error) return { error: "generic" };
+
+  revalidatePath(`/${locale}/properties`);
+  revalidatePath(`/${locale}/properties/${id}`);
+  redirect(`/${locale}/properties/${id}`);
+}
+
+export async function deletePropertyAction(formData: FormData): Promise<void> {
+  const id = String(formData.get("id") ?? "").trim();
+  const locale = String(formData.get("locale") ?? "ar").trim() || "ar";
+  if (!id) return;
+
+  const supabase = await createClient();
+  const { error } = await supabase.from("properties").delete().eq("id", id);
+
+  if (error) redirect(`/${locale}/properties/${id}`);
+  revalidatePath(`/${locale}/properties`);
+  redirect(`/${locale}/properties`);
 }
