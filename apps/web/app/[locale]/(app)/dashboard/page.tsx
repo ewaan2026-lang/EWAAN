@@ -137,10 +137,10 @@ export default async function DashboardPage({
       </div>
 
       {/* الإحصاءات */}
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      <div className="stagger grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
         <StatLinkCard label={t("properties")} value={properties ?? 0} href="/properties" icon={<BuildingIcon className="h-5 w-5" />} />
         <StatLinkCard label={t("units")} value={totalUnits} href="/properties" icon={<DoorIcon className="h-5 w-5" />} />
-        <StatLinkCard label={t("occupancy")} value={`${occupancy}%`} accent icon={<GaugeIcon className="h-5 w-5" />} />
+        <StatLinkCard label={t("occupancy")} value={occupancy} suffix="%" accent icon={<GaugeIcon className="h-5 w-5" />} />
         <StatLinkCard label={t("leases")} value={leases ?? 0} href="/leases" icon={<LayersIcon className="h-5 w-5" />} />
         <StatLinkCard label={t("tenants")} value={tenants ?? 0} href="/tenants" icon={<UsersIcon className="h-5 w-5" />} />
         <StatLinkCard label={t("owners")} value={owners ?? 0} href="/owners" icon={<KeyIcon className="h-5 w-5" />} />

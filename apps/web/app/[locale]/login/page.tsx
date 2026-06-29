@@ -29,9 +29,9 @@ export default async function LoginPage({
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
       {/* اللوحة التعريفية (سطح المكتب) */}
-      <section className="relative hidden overflow-hidden bg-gradient-to-br from-brand-teal-900 via-brand-teal-900 to-brand-teal p-12 text-white lg:flex lg:flex-col lg:justify-between">
-        <div className="pointer-events-none absolute -end-24 -top-24 h-80 w-80 rounded-full bg-brand-teal/40 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -start-16 h-72 w-72 rounded-full bg-brand-brass/20 blur-3xl" />
+      <section className="gradient-pan relative hidden overflow-hidden bg-gradient-to-br from-brand-teal-900 via-brand-teal-900 to-brand-teal p-12 text-white lg:flex lg:flex-col lg:justify-between">
+        <div className="float-slow pointer-events-none absolute -end-24 -top-24 h-80 w-80 rounded-full bg-brand-teal/40 blur-3xl" />
+        <div className="float-slower pointer-events-none absolute -bottom-24 -start-16 h-72 w-72 rounded-full bg-brand-brass/20 blur-3xl" />
 
         <div className="relative flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-2xl font-extrabold text-brand-gold ring-1 ring-white/20">

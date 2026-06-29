@@ -108,7 +108,7 @@ export default async function PropertyDetailPage({
           action={<UnitForm propertyId={id} />}
         />
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="stagger grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {unitList.map((u) => (
             <UnitCard key={u.id} unit={u} locale={locale} />
           ))}

@@ -13,9 +13,9 @@ export function EmptyState({
   action?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-brand-teal/20 bg-white/60 px-6 py-16 text-center">
+    <div className="rise flex flex-col items-center justify-center rounded-3xl border border-dashed border-brand-teal/20 bg-white/60 px-6 py-16 text-center">
       {icon ? (
-        <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-teal/10 text-brand-teal">
+        <div className="float-slow mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-teal/10 text-brand-teal">
           {icon}
         </div>
       ) : null}
