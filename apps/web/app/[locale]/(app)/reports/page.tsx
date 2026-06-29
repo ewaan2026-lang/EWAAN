@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/ui/page-header";
 import { DonutChart } from "@/components/charts/donut-chart";
+import { PrintButton } from "@/components/invoices/print-button";
 import { Constants } from "@ewaan/db";
 
 export const dynamic = "force-dynamic";
@@ -14,6 +15,7 @@ export default async function ReportsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("reports");
+  const tc = await getTranslations("common");
   const tus = await getTranslations("unitStatus");
   const tls = await getTranslations("leaseStatus");
   const intlLocale = locale === "ar" ? "ar-SA-u-nu-latn" : "en-US";
@@ -105,7 +107,11 @@ export default async function ReportsPage({
 
   return (
     <div className="mx-auto max-w-5xl">
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
+      <PageHeader
+        title={t("title")}
+        subtitle={t("subtitle")}
+        action={<PrintButton label={tc("print")} />}
+      />
 
       {/* نظرة عامة — حلقة الإشغال */}
       <div className="mb-8 flex flex-col items-center gap-7 rounded-3xl border border-brand-teal/10 bg-gradient-to-br from-white to-brand-cream/30 p-7 shadow-luxe sm:flex-row sm:gap-10">

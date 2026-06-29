@@ -4,6 +4,7 @@
     "tagline": "Residential property management platform"
   },
   "common": {
+    "print": "Print / Save PDF",
     "email": "Email",
     "password": "Password",
     "signIn": "Sign in",
