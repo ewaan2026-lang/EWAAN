@@ -7,6 +7,7 @@ import {
   ScheduleStatusBadge,
 } from "@/components/leases/status-badge";
 import { DeleteButton } from "@/components/ui/delete-button";
+import { DocumentsCard } from "@/components/media/documents-card";
 import {
   deleteLeaseAction,
   terminateLeaseAction,
@@ -33,7 +34,7 @@ export default async function LeaseDetailPage({
   const { data: lease } = await supabase
     .from("leases")
     .select(
-      "id, contract_number, status, rent_amount, payment_frequency, deposit_amount, late_fee_type, late_fee_value, grace_period_days, auto_renew, start_date, end_date, unit_id, tenant_id",
+      "id, contract_number, status, rent_amount, payment_frequency, deposit_amount, late_fee_type, late_fee_value, grace_period_days, auto_renew, start_date, end_date, unit_id, tenant_id, organization_id",
     )
     .eq("id", id)
     .maybeSingle();
@@ -201,6 +202,17 @@ export default async function LeaseDetailPage({
           ))}
         </div>
       )}
+
+      {/* مستندات العقد */}
+      <div className="mt-8">
+        <DocumentsCard
+          organizationId={lease.organization_id}
+          entityType="lease"
+          entityId={lease.id}
+          redirectPath={`/leases/${id}`}
+          locale={locale}
+        />
+      </div>
     </div>
   );
 }

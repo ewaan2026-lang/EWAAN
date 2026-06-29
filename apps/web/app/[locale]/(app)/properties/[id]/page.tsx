@@ -9,6 +9,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { MediaGallery } from "@/components/media/media-gallery";
 import { HeroImage } from "@/components/media/hero-image";
+import { DocumentsCard } from "@/components/media/documents-card";
 import { LeafletMap } from "@/components/map/leaflet-map";
 import { PropertyReminders } from "@/components/properties/property-reminders";
 import { deletePropertyAction } from "@/lib/actions/properties";
@@ -170,6 +171,17 @@ export default async function PropertyDetailPage({
           entityId={property.id}
           kind="image"
           title={tmedia("photos")}
+          redirectPath={`/properties/${id}`}
+          locale={locale}
+        />
+      </div>
+
+      {/* مستندات العقار */}
+      <div className="mb-8">
+        <DocumentsCard
+          organizationId={property.organization_id}
+          entityType="property"
+          entityId={property.id}
           redirectPath={`/properties/${id}`}
           locale={locale}
         />
