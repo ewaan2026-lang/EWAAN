@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { createClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/ui/page-header";
+import { DonutChart } from "@/components/charts/donut-chart";
 import { Constants } from "@ewaan/db";
 
 export const dynamic = "force-dynamic";
@@ -106,10 +107,27 @@ export default async function ReportsPage({
     <div className="mx-auto max-w-5xl">
       <PageHeader title={t("title")} subtitle={t("subtitle")} />
 
+      {/* نظرة عامة — حلقة الإشغال */}
+      <div className="mb-8 flex flex-col items-center gap-7 rounded-3xl border border-brand-teal/10 bg-gradient-to-br from-white to-brand-cream/30 p-7 shadow-luxe sm:flex-row sm:gap-10">
+        <DonutChart
+          segments={[
+            { value: occupied, color: "#D3AF37" },
+            { value: Math.max(0, totalUnits - occupied), color: "#00809D" },
+          ]}
+          centerValue={`${occupancy}%`}
+          centerLabel={t("kpi.occupancy")}
+        />
+        <div className="flex-1 space-y-3">
+          <LegendRow color="#D3AF37" label={tus("occupied")} value={occupied} total={totalUnits} />
+          <LegendRow color="#00809D" label={tus("vacant")} value={Math.max(0, totalUnits - occupied)} total={totalUnits} />
+        </div>
+      </div>
+
       {/* مؤشرات */}
       <div className="stagger mb-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
         {kpis.map((k, i) => (
-          <div key={i} className="rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card">
+          <div key={i} className="relative overflow-hidden rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-luxe">
+            <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-90" />
             <p className="text-xs font-medium text-brand-teal-900/50">{k.label}</p>
             <p
               className={`mt-1.5 text-2xl font-extrabold ${
@@ -128,7 +146,7 @@ export default async function ReportsPage({
       </div>
 
       {/* الإيراد الشهري */}
-      <div className="mb-8 rounded-3xl border border-brand-teal/10 bg-white p-6 shadow-card">
+      <div className="mb-8 rounded-3xl border border-brand-teal/10 bg-white p-6 shadow-luxe">
         <h2 className="mb-5 text-base font-bold text-brand-teal-900">{t("revenueTitle")}</h2>
         <div className="flex items-end justify-between gap-3" style={{ height: "180px" }}>
           {months.map((m, i) => (
@@ -148,7 +166,7 @@ export default async function ReportsPage({
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* الوحدات حسب الحالة */}
-        <div className="rounded-3xl border border-brand-teal/10 bg-white p-6 shadow-card">
+        <div className="rounded-3xl border border-brand-teal/10 bg-white p-6 shadow-luxe">
           <h2 className="mb-5 text-base font-bold text-brand-teal-900">{t("unitsByStatusTitle")}</h2>
           <div className="space-y-3">
             {unitCounts.map((u) => (
@@ -158,7 +176,7 @@ export default async function ReportsPage({
         </div>
 
         {/* العقود حسب الحالة */}
-        <div className="rounded-3xl border border-brand-teal/10 bg-white p-6 shadow-card">
+        <div className="rounded-3xl border border-brand-teal/10 bg-white p-6 shadow-luxe">
           <h2 className="mb-5 text-base font-bold text-brand-teal-900">{t("leasesByStatusTitle")}</h2>
           {leaseCounts.length === 0 ? (
             <p className="text-sm text-brand-teal-900/50">{t("noData")}</p>
@@ -177,6 +195,32 @@ export default async function ReportsPage({
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function LegendRow({
+  color,
+  label,
+  value,
+  total,
+}: {
+  color: string;
+  label: string;
+  value: number;
+  total: number;
+}) {
+  const pct = total > 0 ? Math.round((value / total) * 100) : 0;
+  return (
+    <div className="flex items-center gap-3">
+      <span className="h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: color }} />
+      <span className="flex-1 text-sm font-semibold text-brand-teal-900/75">{label}</span>
+      <span className="text-sm font-bold text-brand-teal-900" dir="ltr">
+        {value}
+      </span>
+      <span className="w-10 text-end text-xs font-medium text-brand-teal-900/45" dir="ltr">
+        {pct}%
+      </span>
     </div>
   );
 }

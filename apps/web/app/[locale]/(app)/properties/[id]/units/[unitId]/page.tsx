@@ -6,6 +6,7 @@ import { UnitStatusBadge } from "@/components/units/status-badge";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { deleteUnitAction } from "@/lib/actions/units";
 import { MediaGallery } from "@/components/media/media-gallery";
+import { HeroImage } from "@/components/media/hero-image";
 import { ListingCopy } from "@/components/units/listing-copy";
 import { MetersSection } from "@/components/units/meters-section";
 import { Badge } from "@/components/ui/badge";
@@ -70,6 +71,8 @@ export default async function UnitDetailPage({
         <ArrowIcon className="h-4 w-4 rtl:rotate-180" />
         {tc("back")}
       </Link>
+
+      <HeroImage entityType="unit" entityId={unitId} />
 
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <span className="h-9 w-1 shrink-0 rounded-full bg-gradient-to-b from-brand-gold to-brand-brass" />
