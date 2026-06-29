@@ -92,7 +92,7 @@ export default async function TenantDetailPage({
       </Link>
 
       <div className="mb-7 flex flex-wrap items-center gap-4">
-        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-brass to-brand-teal text-xl font-extrabold text-white">
+        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-brass to-brand-teal text-xl font-extrabold text-white shadow-luxe ring-2 ring-brand-gold/35">
           {initials(tenant.full_name)}
         </span>
         <h1 className="text-2xl font-extrabold tracking-tight text-brand-teal-900 sm:text-[28px]">

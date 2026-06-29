@@ -73,19 +73,22 @@ export default async function PropertyDetailPage({
 
       {/* ترويسة العقار */}
       <div className="mb-7 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="text-2xl font-extrabold tracking-tight text-brand-teal-900 sm:text-[28px]">
-              {property.name}
-            </h1>
-            <PropertyTypeBadge type={property.property_type} />
+        <div className="flex min-w-0 items-stretch gap-3.5">
+          <span className="mt-1 w-1 shrink-0 rounded-full bg-gradient-to-b from-brand-gold to-brand-brass" />
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-3">
+              <h1 className="text-2xl font-extrabold tracking-tight text-brand-teal-900 sm:text-[28px]">
+                {property.name}
+              </h1>
+              <PropertyTypeBadge type={property.property_type} />
+            </div>
+            {location ? (
+              <p className="mt-1.5 flex items-center gap-1.5 text-sm text-brand-teal-900/55">
+                <MapPinIcon className="h-4 w-4 shrink-0" />
+                {location}
+              </p>
+            ) : null}
           </div>
-          {location ? (
-            <p className="mt-1.5 flex items-center gap-1.5 text-sm text-brand-teal-900/55">
-              <MapPinIcon className="h-4 w-4 shrink-0" />
-              {location}
-            </p>
-          ) : null}
         </div>
 
         <div className="flex shrink-0 items-center gap-2">

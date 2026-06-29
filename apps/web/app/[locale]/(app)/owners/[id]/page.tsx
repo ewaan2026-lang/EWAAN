@@ -94,7 +94,7 @@ export default async function OwnerDetailPage({
 
       {/* ترويسة المالك */}
       <div className="mb-7 flex flex-wrap items-center gap-4">
-        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-teal to-brand-teal-900 text-xl font-extrabold text-white">
+        <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-teal to-brand-teal-900 text-xl font-extrabold text-white shadow-luxe ring-2 ring-brand-gold/35">
           {initials(owner.full_name)}
         </span>
         <div className="min-w-0">

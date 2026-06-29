@@ -477,6 +477,7 @@
   },
   "portal": {
     "title": "Tenant portal",
+    "portalLabel": "Tenant portal",
     "welcome": "Welcome, {name}",
     "notTenantTitle": "No tenant record",
     "notTenantBody": "Your account isn't linked to any lease yet. Contact the property management to link your account.",
