@@ -27,14 +27,19 @@ export type UnitInitial = {
   features: string[];
   listing_text: string | null;
   has_water_tank: boolean;
+  unit_type_id: string | null;
 };
+
+export type UnitTypeOption = { id: string; name: string };
 
 export function UnitForm({
   propertyId,
   initial,
+  unitTypes = [],
 }: {
   propertyId: string;
   initial?: UnitInitial;
+  unitTypes?: UnitTypeOption[];
 }) {
   const t = useTranslations("units");
   const ts = useTranslations("unitStatus");
@@ -103,6 +108,24 @@ export function UnitForm({
             ))}
           </select>
         </Field>
+
+        {unitTypes.length > 0 ? (
+          <Field label={t("fields.type")} htmlFor="unit_type_id">
+            <select
+              id="unit_type_id"
+              name="unit_type_id"
+              defaultValue={initial?.unit_type_id ?? ""}
+              className={fieldClass}
+            >
+              <option value="">{t("typeNone")}</option>
+              {unitTypes.map((ut) => (
+                <option key={ut.id} value={ut.id}>
+                  {ut.name}
+                </option>
+              ))}
+            </select>
+          </Field>
+        ) : null}
 
         <Field label={t("fields.floor")} htmlFor="floor" hint={tc("optional")}>
           <input id="floor" name="floor" type="number" inputMode="numeric" defaultValue={initial?.floor ?? undefined} className={fieldClass} />

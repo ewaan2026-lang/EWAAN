@@ -44,13 +44,21 @@ export default async function PropertyDetailPage({
 
   if (!property) notFound();
 
-  const { data: units } = await supabase
-    .from("units")
-    .select("id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent")
-    .eq("property_id", id)
-    .order("unit_number", { ascending: true });
+  const [{ data: units }, { data: unitTypes }] = await Promise.all([
+    supabase
+      .from("units")
+      .select("id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent")
+      .eq("property_id", id)
+      .order("unit_number", { ascending: true }),
+    supabase
+      .from("unit_types")
+      .select("id, name")
+      .eq("organization_id", property.organization_id)
+      .order("name"),
+  ]);
 
   const unitList = (units ?? []) as UnitCardData[];
+  const unitTypeOptions = unitTypes ?? [];
   const location = locationText(property.address, property.national_address);
 
   return (
@@ -161,7 +169,7 @@ export default async function PropertyDetailPage({
             </span>
           ) : null}
         </h2>
-        {unitList.length > 0 ? <UnitForm propertyId={id} /> : null}
+        {unitList.length > 0 ? <UnitForm propertyId={id} unitTypes={unitTypeOptions} /> : null}
       </div>
 
       {unitList.length === 0 ? (
@@ -169,7 +177,7 @@ export default async function PropertyDetailPage({
           icon={<DoorIcon className="h-7 w-7" />}
           title={tu("emptyTitle")}
           body={tu("emptyBody")}
-          action={<UnitForm propertyId={id} />}
+          action={<UnitForm propertyId={id} unitTypes={unitTypeOptions} />}
         />
       ) : (
         <div className="stagger grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

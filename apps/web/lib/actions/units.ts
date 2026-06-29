@@ -33,6 +33,7 @@ function deepFields(formData: FormData) {
     features,
     listing_text: String(formData.get("listing_text") ?? "").trim() || null,
     has_water_tank: formData.get("has_water_tank") === "on",
+    unit_type_id: String(formData.get("unit_type_id") ?? "").trim() || null,
   };
 }
 

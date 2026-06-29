@@ -8,6 +8,10 @@ import {
   type MemberRow,
   type RoleOption,
 } from "@/components/settings/members-section";
+import {
+  UnitTypesSection,
+  type UnitTypeRow,
+} from "@/components/settings/unit-types-section";
 import { SettingsIcon } from "@/components/ui/icons";
 
 export const dynamic = "force-dynamic";
@@ -33,6 +37,7 @@ export default async function SettingsPage({
   let org: OrgData | null = null;
   let memberRows: MemberRow[] = [];
   let roleOptions: RoleOption[] = [];
+  let unitTypes: UnitTypeRow[] = [];
 
   if (orgId) {
     const [{ data: orgData }, { data: members }, { data: roles }] =
@@ -46,6 +51,13 @@ export default async function SettingsPage({
         supabase.from("roles").select("id, key, name").eq("organization_id", orgId),
       ]);
     org = orgData;
+
+    const { data: typesData } = await supabase
+      .from("unit_types")
+      .select("id, name, description")
+      .eq("organization_id", orgId)
+      .order("created_at", { ascending: true });
+    unitTypes = typesData ?? [];
 
     const roleLabel = (key: string, name: string) =>
       KNOWN_ROLES.includes(key) ? tr(key) : name;
@@ -90,6 +102,7 @@ export default async function SettingsPage({
             </div>
           </div>
 
+          <UnitTypesSection types={unitTypes} locale={locale} />
           <MembersSection members={memberRows} roles={roleOptions} locale={locale} />
         </>
       ) : null}

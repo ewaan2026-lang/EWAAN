@@ -28,12 +28,22 @@ export default async function UnitDetailPage({
   const { data: unit } = await supabase
     .from("units")
     .select(
-      "id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent, furnished, features, listing_text, has_water_tank, organization_id",
+      "id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent, furnished, features, listing_text, has_water_tank, organization_id, unit_type_id",
     )
     .eq("id", unitId)
     .maybeSingle();
 
   if (!unit) notFound();
+
+  let typeName: string | null = null;
+  if (unit.unit_type_id) {
+    const { data: ut } = await supabase
+      .from("unit_types")
+      .select("name")
+      .eq("id", unit.unit_type_id)
+      .maybeSingle();
+    typeName = ut?.name ?? null;
+  }
 
   const fmt = (n: number) =>
     new Intl.NumberFormat("ar-SA-u-nu-latn", {
@@ -66,6 +76,7 @@ export default async function UnitDetailPage({
           {unit.unit_number}
         </h1>
         <UnitStatusBadge status={unit.status} />
+        {typeName ? <Badge tone="slate">{typeName}</Badge> : null}
         {unit.furnished ? <Badge tone="violet">{t("fields.furnished")}</Badge> : null}
         {unit.has_water_tank ? <Badge tone="teal">{t("hasTank")}</Badge> : null}
 
