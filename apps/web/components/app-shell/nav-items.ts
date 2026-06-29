@@ -1,6 +1,7 @@
 import {
   HomeIcon,
   BuildingIcon,
+  MapPinIcon,
   KeyIcon,
   UsersIcon,
   LayersIcon,
@@ -21,6 +22,7 @@ export type NavItem = {
 export const NAV: NavItem[] = [
   { key: "overview", href: "/dashboard", Icon: HomeIcon },
   { key: "properties", href: "/properties", Icon: BuildingIcon },
+  { key: "map", href: "/map", Icon: MapPinIcon },
   { key: "owners", href: "/owners", Icon: KeyIcon },
   { key: "tenants", href: "/tenants", Icon: UsersIcon },
   { key: "leases", href: "/leases", Icon: LayersIcon },

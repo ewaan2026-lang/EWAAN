@@ -2,7 +2,7 @@
 
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 
 // مركز افتراضي: الرياض.
@@ -38,12 +38,37 @@ function Recenter({ lat, lng }: { lat: number | null; lng: number | null }) {
   return null;
 }
 
+export type MapMarker = {
+  id: string;
+  lat: number;
+  lng: number;
+  label: string;
+  href: string;
+  sub?: string;
+};
+
+function FitBounds({ markers }: { markers: MapMarker[] }) {
+  const map = useMap();
+  useEffect(() => {
+    const first = markers[0];
+    if (!first) return;
+    if (markers.length === 1) {
+      map.setView([first.lat, first.lng], 14);
+      return;
+    }
+    const bounds = L.latLngBounds(markers.map((m) => [m.lat, m.lng] as [number, number]));
+    map.fitBounds(bounds, { padding: [48, 48], maxZoom: 14 });
+  }, [markers, map]);
+  return null;
+}
+
 export type MapImplProps = {
   lat: number | null;
   lng: number | null;
   interactive?: boolean;
   zoom?: number;
   onPick?: (lat: number, lng: number) => void;
+  markers?: MapMarker[];
 };
 
 export default function MapImpl({
@@ -52,14 +77,21 @@ export default function MapImpl({
   interactive = false,
   zoom = 13,
   onPick,
+  markers,
 }: MapImplProps) {
   const hasPoint = lat != null && lng != null;
-  const center: [number, number] = hasPoint ? [lat, lng] : RIYADH;
+  const firstMarker = markers && markers.length > 0 ? markers[0] : undefined;
+  const hasMarkers = !!firstMarker;
+  const center: [number, number] = hasPoint
+    ? [lat, lng]
+    : firstMarker
+      ? [firstMarker.lat, firstMarker.lng]
+      : RIYADH;
 
   return (
     <MapContainer
       center={center}
-      zoom={hasPoint ? zoom : 5}
+      zoom={hasPoint || hasMarkers ? zoom : 5}
       scrollWheelZoom={interactive}
       dragging={interactive}
       doubleClickZoom={interactive}
@@ -70,6 +102,24 @@ export default function MapImpl({
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
+      {markers && markers.length > 0
+        ? markers.map((m) => (
+            <Marker key={m.id} position={[m.lat, m.lng]} icon={pinIcon}>
+              <Popup>
+                <a
+                  href={m.href}
+                  className="block text-sm font-bold text-brand-teal-900 underline decoration-brand-gold/60 underline-offset-2"
+                >
+                  {m.label}
+                </a>
+                {m.sub ? (
+                  <span className="mt-0.5 block text-xs text-brand-teal-900/60">{m.sub}</span>
+                ) : null}
+              </Popup>
+            </Marker>
+          ))
+        : null}
+      {markers && markers.length > 0 ? <FitBounds markers={markers} /> : null}
       {hasPoint ? (
         <Marker
           position={[lat, lng]}

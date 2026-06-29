@@ -66,6 +66,7 @@
   "nav": {
     "overview": "Overview",
     "properties": "Properties",
+    "map": "Map",
     "owners": "Owners",
     "tenants": "Tenants",
     "leases": "Leases",
@@ -477,6 +478,10 @@
   },
   "map": {
     "title": "Location",
+    "subtitle": "All your located properties on the map",
+    "emptyTitle": "No properties on the map",
+    "emptyBody": "Set your properties' locations from the property edit page to see them here.",
+    "shownCount": "{count} properties on the map",
     "locationTitle": "Property location",
     "pickerHint": "Click the map or drag the pin to set the location, or type the coordinates manually.",
     "latitude": "Latitude",
