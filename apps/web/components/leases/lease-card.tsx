@@ -32,8 +32,9 @@ export async function LeaseCard({
   return (
     <Link
       href={`/leases/${lease.id}`}
-      className="group flex flex-col rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card transition hover:-translate-y-0.5 hover:border-brand-teal/25 hover:shadow-lg"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card transition duration-300 hover:-translate-y-1 hover:border-brand-brass/35 hover:shadow-luxe"
     >
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-0 transition group-hover:opacity-90" />
       <div className="flex items-start justify-between gap-3">
         <p className="text-[15px] font-extrabold text-brand-teal-900">
           {lease.contract_number ?? `#${lease.id.slice(0, 8)}`}

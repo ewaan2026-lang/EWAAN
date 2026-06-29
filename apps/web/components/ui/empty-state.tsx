@@ -15,7 +15,7 @@ export function EmptyState({
   return (
     <div className="rise flex flex-col items-center justify-center rounded-3xl border border-dashed border-brand-teal/20 bg-white/60 px-6 py-16 text-center">
       {icon ? (
-        <div className="float-slow mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-teal/10 text-brand-teal">
+        <div className="float-slow mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-teal/10 to-brand-gold/15 text-brand-teal ring-1 ring-brand-gold/25">
           {icon}
         </div>
       ) : null}

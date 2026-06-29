@@ -36,9 +36,9 @@ export async function PropertyCard({
   return (
     <Link
       href={`/properties/${property.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-teal/10 bg-white shadow-card transition hover:-translate-y-0.5 hover:border-brand-teal/25 hover:shadow-lg"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-teal/10 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:border-brand-brass/35 hover:shadow-luxe"
     >
-      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-teal via-brand-brass to-brand-gold opacity-80" />
+      <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-90" />
 
       <div className="flex items-start justify-between gap-3 p-5 pb-4">
         <div className="flex min-w-0 items-center gap-3">
