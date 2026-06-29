@@ -29,6 +29,8 @@ function parseProperty(formData: FormData) {
 
   const city = String(formData.get("city") ?? "").trim();
   const district = String(formData.get("district") ?? "").trim();
+  const street = String(formData.get("street") ?? "").trim();
+  const buildingNumber = String(formData.get("building_number") ?? "").trim();
   const nationalAddress = String(formData.get("national_address") ?? "").trim();
   const deedNumber = String(formData.get("deed_number") ?? "").trim();
   const ownerId = String(formData.get("owner_id") ?? "").trim();
@@ -44,10 +46,18 @@ function parseProperty(formData: FormData) {
   const longitude =
     Number.isFinite(lngRaw) && lngRaw >= -180 && lngRaw <= 180 ? lngRaw : null;
 
+  const hasAddress = city || district || street || buildingNumber;
+
   return {
     property_type,
-    address:
-      city || district ? { city: city || null, district: district || null } : null,
+    address: hasAddress
+      ? {
+          city: city || null,
+          district: district || null,
+          street: street || null,
+          building_number: buildingNumber || null,
+        }
+      : null,
     national_address: nationalAddress || null,
     deed_number: deedNumber || null,
     owner_id: ownerId || null,

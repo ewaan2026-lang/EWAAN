@@ -34,7 +34,12 @@ export default async function EditPropertyPage({
   if (!property) notFound();
 
   const addr = (property.address ?? null) as
-    | { city?: string | null; district?: string | null }
+    | {
+        city?: string | null;
+        district?: string | null;
+        street?: string | null;
+        building_number?: string | null;
+      }
     | null;
 
   const initial: PropertyInitial = {
@@ -43,6 +48,8 @@ export default async function EditPropertyPage({
     property_type: property.property_type,
     city: addr?.city ?? "",
     district: addr?.district ?? "",
+    street: addr?.street ?? "",
+    building_number: addr?.building_number ?? "",
     national_address: property.national_address ?? "",
     deed_number: property.deed_number ?? "",
     owner_id: property.owner_id ?? "",

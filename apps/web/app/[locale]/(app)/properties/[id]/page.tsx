@@ -18,8 +18,16 @@ import type { Json } from "@ewaan/db";
 export const dynamic = "force-dynamic";
 
 function locationText(address: Json | null, nationalAddress: string | null) {
-  const a = (address ?? null) as { city?: string | null; district?: string | null } | null;
-  const parts = [a?.district, a?.city].filter(Boolean) as string[];
+  const a = (address ?? null) as
+    | {
+        city?: string | null;
+        district?: string | null;
+        street?: string | null;
+        building_number?: string | null;
+      }
+    | null;
+  const building = a?.building_number ? `${a.building_number}` : null;
+  const parts = [a?.street, building, a?.district, a?.city].filter(Boolean) as string[];
   if (parts.length) return parts.join("، ");
   return nationalAddress ?? null;
 }
