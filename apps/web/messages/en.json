@@ -218,7 +218,18 @@
       "occupancy": "Occupancy"
     },
     "detailUnitsTitle": "Property units",
-    "detailInfoTitle": "Property details"
+    "detailInfoTitle": "Property details",
+    "services": "Services",
+    "servicesHint": "separate services with commas",
+    "servicesPlaceholder": "e.g. security, elevator, parking, cleaning",
+    "servicesTitle": "Property services",
+    "whatsappGroup": "WhatsApp group link",
+    "whatsappGroupPlaceholder": "https://chat.whatsapp.com/…",
+    "openGroup": "Open WhatsApp group",
+    "remindersTitle": "Payment reminders",
+    "remindButton": "Remind via WhatsApp",
+    "noReminders": "No upcoming due payments.",
+    "reminderText": "Friendly reminder: you have a rent installment of {amount} due on {date}. Kindly arrange payment soon. Thank you."
   },
   "units": {
     "title": "Units",

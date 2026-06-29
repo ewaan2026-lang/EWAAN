@@ -24,6 +24,8 @@ export type PropertyInitial = {
   national_address: string;
   deed_number: string;
   owner_id: string;
+  services: string[];
+  whatsapp_group_url: string;
 };
 
 export function PropertyForm({
@@ -141,6 +143,28 @@ export function PropertyForm({
           />
         </Field>
       </div>
+
+      <Field label={t("services")} htmlFor="services" hint={t("servicesHint")}>
+        <input
+          id="services"
+          name="services"
+          defaultValue={initial?.services?.join("، ")}
+          placeholder={t("servicesPlaceholder")}
+          className={fieldClass}
+        />
+      </Field>
+
+      <Field label={t("whatsappGroup")} htmlFor="whatsapp_group_url" hint={tc("optional")}>
+        <input
+          id="whatsapp_group_url"
+          name="whatsapp_group_url"
+          type="url"
+          dir="ltr"
+          defaultValue={initial?.whatsapp_group_url}
+          placeholder={t("whatsappGroupPlaceholder")}
+          className={`${fieldClass} text-start`}
+        />
+      </Field>
 
       {state.error ? (
         <p role="alert" className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">

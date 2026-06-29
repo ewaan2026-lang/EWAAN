@@ -218,7 +218,18 @@
       "occupancy": "الإشغال"
     },
     "detailUnitsTitle": "وحدات العقار",
-    "detailInfoTitle": "بيانات العقار"
+    "detailInfoTitle": "بيانات العقار",
+    "services": "الخدمات",
+    "servicesHint": "افصل بين الخدمات بفاصلة",
+    "servicesPlaceholder": "مثال: حراسة، مصعد، موقف، نظافة",
+    "servicesTitle": "خدمات العقار",
+    "whatsappGroup": "رابط مجموعة واتساب",
+    "whatsappGroupPlaceholder": "https://chat.whatsapp.com/…",
+    "openGroup": "فتح مجموعة الواتساب",
+    "remindersTitle": "تذكيرات الدفع",
+    "remindButton": "تذكير عبر واتساب",
+    "noReminders": "لا دفعات مستحقة قريبة.",
+    "reminderText": "تذكير ودّي: لديكم دفعة إيجار مستحقة بقيمة {amount} بتاريخ {date}. نأمل السداد في أقرب وقت. شكراً لكم."
   },
   "units": {
     "title": "الوحدات",

@@ -25,7 +25,7 @@ export default async function EditPropertyPage({
   const [{ data: property }, { data: owners }] = await Promise.all([
     supabase
       .from("properties")
-      .select("id, name, property_type, address, national_address, deed_number, owner_id")
+      .select("id, name, property_type, address, national_address, deed_number, owner_id, services, whatsapp_group_url")
       .eq("id", id)
       .maybeSingle(),
     supabase.from("owners").select("id, full_name").order("full_name"),
@@ -46,6 +46,8 @@ export default async function EditPropertyPage({
     national_address: property.national_address ?? "",
     deed_number: property.deed_number ?? "",
     owner_id: property.owner_id ?? "",
+    services: property.services ?? [],
+    whatsapp_group_url: property.whatsapp_group_url ?? "",
   };
 
   return (

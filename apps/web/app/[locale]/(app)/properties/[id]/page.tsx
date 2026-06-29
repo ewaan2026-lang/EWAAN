@@ -8,8 +8,9 @@ import { UnitCard, type UnitCardData } from "@/components/units/unit-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { MediaGallery } from "@/components/media/media-gallery";
+import { PropertyReminders } from "@/components/properties/property-reminders";
 import { deletePropertyAction } from "@/lib/actions/properties";
-import { ArrowIcon, DoorIcon, MapPinIcon, PencilIcon } from "@/components/ui/icons";
+import { ArrowIcon, DoorIcon, MapPinIcon, PencilIcon, WhatsAppIcon } from "@/components/ui/icons";
 import type { Json } from "@ewaan/db";
 
 export const dynamic = "force-dynamic";
@@ -102,6 +103,40 @@ export default async function PropertyDetailPage({
           ) : null}
         </div>
       ) : null}
+
+      {/* الخدمات + مجموعة الواتساب */}
+      {(property.services && property.services.length > 0) || property.whatsapp_group_url ? (
+        <div className="mb-8 rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-base font-bold text-brand-teal-900">{t("servicesTitle")}</h2>
+            {property.whatsapp_group_url ? (
+              <a
+                href={property.whatsapp_group_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-3.5 py-2 text-xs font-bold text-white transition hover:bg-emerald-600"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                {t("openGroup")}
+              </a>
+            ) : null}
+          </div>
+          {property.services && property.services.length > 0 ? (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {property.services.map((s, i) => (
+                <span key={i} className="rounded-full bg-brand-teal/8 px-3 py-1.5 text-xs font-semibold text-brand-teal-900">
+                  {s}
+                </span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {/* تذكيرات الدفع */}
+      <div className="mb-8">
+        <PropertyReminders propertyId={property.id} locale={locale} />
+      </div>
 
       {/* صور العقار */}
       <div className="mb-8">
