@@ -9,6 +9,7 @@ import {
   MaintenanceStatusBadge,
 } from "@/components/maintenance/badges";
 import { TenantRequestForm } from "@/components/portal/request-form";
+import { PayButton } from "@/components/portal/pay-button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { UsersIcon } from "@/components/ui/icons";
 
@@ -71,6 +72,7 @@ export default async function PortalPage({
     }).format(n);
 
   const primary = leaseList[0];
+  const payEnabled = process.env.NEXT_PUBLIC_MOYASAR_ENABLED === "1";
 
   return (
     <div className="space-y-8">
@@ -142,6 +144,9 @@ export default async function PortalPage({
                     {fmt(s.amount)}
                   </span>
                   <ScheduleStatusBadge status={s.status} />
+                  {payEnabled && s.status !== "paid" && s.status !== "waived" ? (
+                    <PayButton scheduleId={s.id} />
+                  ) : null}
                 </div>
               </div>
             ))}
