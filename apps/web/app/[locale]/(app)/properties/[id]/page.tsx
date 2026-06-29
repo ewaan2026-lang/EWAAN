@@ -6,7 +6,9 @@ import { PropertyTypeBadge } from "@/components/properties/type-badge";
 import { UnitForm } from "@/components/units/unit-form";
 import { UnitCard, type UnitCardData } from "@/components/units/unit-card";
 import { EmptyState } from "@/components/ui/empty-state";
-import { ArrowIcon, DoorIcon, MapPinIcon } from "@/components/ui/icons";
+import { DeleteButton } from "@/components/ui/delete-button";
+import { deletePropertyAction } from "@/lib/actions/properties";
+import { ArrowIcon, DoorIcon, MapPinIcon, PencilIcon } from "@/components/ui/icons";
 import type { Json } from "@ewaan/db";
 
 export const dynamic = "force-dynamic";
@@ -27,6 +29,7 @@ export default async function PropertyDetailPage({
   setRequestLocale(locale);
   const t = await getTranslations("properties");
   const tu = await getTranslations("units");
+  const tc = await getTranslations("common");
 
   const supabase = await createClient();
 
@@ -73,6 +76,17 @@ export default async function PropertyDetailPage({
             </p>
           ) : null}
         </div>
+
+        <div className="flex shrink-0 items-center gap-2">
+          <Link
+            href={`/properties/${id}/edit`}
+            className="inline-flex items-center gap-2 rounded-xl border border-brand-teal/15 bg-white px-4 py-2.5 text-sm font-bold text-brand-teal-900 shadow-card transition hover:border-brand-teal/35 hover:bg-brand-teal/5"
+          >
+            <PencilIcon className="h-4 w-4 text-brand-teal" />
+            {tc("edit")}
+          </Link>
+          <DeleteButton action={deletePropertyAction} id={id} locale={locale} />
+        </div>
       </div>
 
       {/* بطاقة المعلومات */}
@@ -110,7 +124,7 @@ export default async function PropertyDetailPage({
       ) : (
         <div className="stagger grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {unitList.map((u) => (
-            <UnitCard key={u.id} unit={u} locale={locale} />
+            <UnitCard key={u.id} unit={u} locale={locale} propertyId={id} />
           ))}
         </div>
       )}

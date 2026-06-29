@@ -2,9 +2,10 @@
 
 import { useActionState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Constants } from "@ewaan/db";
+import { Constants, type Enums } from "@ewaan/db";
 import {
   createPropertyAction,
+  updatePropertyAction,
   type PropertyState,
 } from "@/lib/actions/properties";
 import { Field, fieldClass } from "@/components/ui/field";
@@ -14,12 +15,32 @@ const propertyTypes = Constants.public.Enums.property_type;
 
 export type OwnerOption = { id: string; full_name: string };
 
-export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
+export type PropertyInitial = {
+  id: string;
+  name: string;
+  property_type: Enums<"property_type">;
+  city: string;
+  district: string;
+  national_address: string;
+  deed_number: string;
+  owner_id: string;
+};
+
+export function PropertyForm({
+  owners = [],
+  initial,
+}: {
+  owners?: OwnerOption[];
+  initial?: PropertyInitial;
+}) {
   const t = useTranslations("properties");
   const tp = useTranslations("propertyTypes");
   const tc = useTranslations("common");
   const locale = useLocale();
-  const action = createPropertyAction.bind(null, locale);
+
+  const action = initial
+    ? updatePropertyAction.bind(null, locale, initial.id)
+    : createPropertyAction.bind(null, locale);
   const [state, formAction, pending] = useActionState(action, initialState);
 
   return (
@@ -30,6 +51,7 @@ export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
           name="name"
           required
           autoFocus
+          defaultValue={initial?.name}
           placeholder={t("fields.namePlaceholder")}
           className={fieldClass}
         />
@@ -39,7 +61,7 @@ export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
         <select
           id="property_type"
           name="property_type"
-          defaultValue="residential_building"
+          defaultValue={initial?.property_type ?? "residential_building"}
           className={fieldClass}
         >
           {propertyTypes.map((tp_) => (
@@ -52,7 +74,12 @@ export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
 
       {owners.length > 0 ? (
         <Field label={t("fields.owner")} htmlFor="owner_id" hint={tc("optional")}>
-          <select id="owner_id" name="owner_id" defaultValue="" className={fieldClass}>
+          <select
+            id="owner_id"
+            name="owner_id"
+            defaultValue={initial?.owner_id ?? ""}
+            className={fieldClass}
+          >
             <option value="">{t("fields.ownerNone")}</option>
             {owners.map((o) => (
               <option key={o.id} value={o.id}>
@@ -68,18 +95,16 @@ export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
           <input
             id="city"
             name="city"
+            defaultValue={initial?.city}
             placeholder={t("fields.cityPlaceholder")}
             className={fieldClass}
           />
         </Field>
-        <Field
-          label={t("fields.district")}
-          htmlFor="district"
-          hint={tc("optional")}
-        >
+        <Field label={t("fields.district")} htmlFor="district" hint={tc("optional")}>
           <input
             id="district"
             name="district"
+            defaultValue={initial?.district}
             placeholder={t("fields.districtPlaceholder")}
             className={fieldClass}
           />
@@ -96,6 +121,7 @@ export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
             id="national_address"
             name="national_address"
             dir="ltr"
+            defaultValue={initial?.national_address}
             placeholder={t("fields.nationalAddressPlaceholder")}
             className={`${fieldClass} text-start`}
           />
@@ -109,6 +135,7 @@ export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
             id="deed_number"
             name="deed_number"
             dir="ltr"
+            defaultValue={initial?.deed_number}
             placeholder={t("fields.deedNumberPlaceholder")}
             className={`${fieldClass} text-start`}
           />
@@ -127,7 +154,7 @@ export function PropertyForm({ owners = [] }: { owners?: OwnerOption[] }) {
           disabled={pending}
           className="rounded-xl bg-brand-teal px-6 py-2.5 text-[15px] font-bold text-white shadow-card transition hover:bg-brand-teal-700 disabled:opacity-60"
         >
-          {pending ? tc("saving") : t("create")}
+          {pending ? tc("saving") : initial ? t("saveChanges") : t("create")}
         </button>
       </div>
     </form>
