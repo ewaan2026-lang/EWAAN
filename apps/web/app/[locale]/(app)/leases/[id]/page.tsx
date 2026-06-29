@@ -6,7 +6,12 @@ import {
   LeaseStatusBadge,
   ScheduleStatusBadge,
 } from "@/components/leases/status-badge";
-import { ArrowIcon } from "@/components/ui/icons";
+import { DeleteButton } from "@/components/ui/delete-button";
+import {
+  deleteLeaseAction,
+  terminateLeaseAction,
+} from "@/lib/actions/leases";
+import { ArrowIcon, PencilIcon } from "@/components/ui/icons";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +26,7 @@ export default async function LeaseDetailPage({
   const tlabels = await getTranslations("leases.labels");
   const tf = await getTranslations("paymentFrequency");
   const tlt = await getTranslations("lateFeeType");
+  const tc = await getTranslations("common");
 
   const supabase = await createClient();
 
@@ -120,6 +126,29 @@ export default async function LeaseDetailPage({
           {lease.contract_number ?? `#${lease.id.slice(0, 8)}`}
         </h1>
         <LeaseStatusBadge status={lease.status} />
+
+        <div className="flex items-center gap-2 sm:ms-auto">
+          <Link
+            href={`/leases/${id}/edit`}
+            className="inline-flex items-center gap-2 rounded-xl border border-brand-teal/15 bg-white px-4 py-2.5 text-sm font-bold text-brand-teal-900 shadow-card transition hover:border-brand-teal/35 hover:bg-brand-teal/5"
+          >
+            <PencilIcon className="h-4 w-4 text-brand-teal" />
+            {tc("edit")}
+          </Link>
+          {lease.status === "active" ? (
+            <form action={terminateLeaseAction}>
+              <input type="hidden" name="id" value={id} />
+              <input type="hidden" name="locale" value={locale} />
+              <button
+                type="submit"
+                className="inline-flex items-center gap-2 rounded-xl border border-amber-200 bg-white px-4 py-2.5 text-sm font-bold text-amber-700 transition hover:bg-amber-50"
+              >
+                {t("terminate")}
+              </button>
+            </form>
+          ) : null}
+          <DeleteButton action={deleteLeaseAction} id={id} locale={locale} />
+        </div>
       </div>
 
       {/* تفاصيل العقد */}

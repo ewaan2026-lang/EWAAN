@@ -140,3 +140,113 @@ export async function createLeaseAction(
   revalidatePath(`/${locale}/leases`);
   redirect(`/${locale}/leases/${lease.id}`);
 }
+
+export async function updateLeaseAction(
+  locale: string,
+  id: string,
+  _prevState: LeaseState,
+  formData: FormData,
+): Promise<LeaseState> {
+  const unitId = String(formData.get("unit_id") ?? "").trim();
+  if (!unitId) return { error: "unit" };
+  const tenantId = String(formData.get("tenant_id") ?? "").trim();
+  if (!tenantId) return { error: "tenant" };
+
+  const startDate = String(formData.get("start_date") ?? "").trim();
+  const endDate = String(formData.get("end_date") ?? "").trim();
+  if (!startDate || !endDate || endDate < startDate) return { error: "dates" };
+
+  const rent = toNumber(formData.get("rent_amount"));
+  if (rent == null || rent <= 0) return { error: "rent" };
+
+  const frequency = pickEnum<Enums<"payment_frequency">>(
+    String(formData.get("payment_frequency") ?? ""),
+    ["monthly", "quarterly", "semi_annual", "annual"],
+    "monthly",
+  );
+  const status = pickEnum<Enums<"lease_status">>(
+    String(formData.get("status") ?? ""),
+    ["draft", "active", "expired", "terminated", "renewed"],
+    "draft",
+  );
+  const lateFeeType = pickEnum<Enums<"late_fee_type">>(
+    String(formData.get("late_fee_type") ?? ""),
+    ["none", "percentage", "fixed"],
+    "none",
+  );
+
+  const supabase = await createClient();
+  // ملاحظة: لا يُعاد توليد جدول الدفعات عند التعديل حفاظاً على الدفعات المسجّلة.
+  const { error } = await supabase
+    .from("leases")
+    .update({
+      unit_id: unitId,
+      tenant_id: tenantId,
+      contract_number: String(formData.get("contract_number") ?? "").trim() || null,
+      start_date: startDate,
+      end_date: endDate,
+      rent_amount: rent,
+      payment_frequency: frequency,
+      deposit_amount: toNumber(formData.get("deposit_amount")),
+      late_fee_type: lateFeeType,
+      late_fee_value: lateFeeType === "none" ? 0 : toNumber(formData.get("late_fee_value")),
+      grace_period_days: toNumber(formData.get("grace_period_days")) ?? 0,
+      auto_renew: formData.get("auto_renew") === "on",
+      status,
+    })
+    .eq("id", id);
+
+  if (error) return { error: "generic" };
+
+  if (status === "active") {
+    await supabase.from("units").update({ status: "occupied" }).eq("id", unitId);
+  } else if (status === "terminated" || status === "expired") {
+    await supabase.from("units").update({ status: "vacant" }).eq("id", unitId);
+  }
+
+  revalidatePath(`/${locale}/leases`);
+  revalidatePath(`/${locale}/leases/${id}`);
+  redirect(`/${locale}/leases/${id}`);
+}
+
+async function freeLeaseUnit(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  leaseId: string,
+) {
+  const { data } = await supabase
+    .from("leases")
+    .select("unit_id")
+    .eq("id", leaseId)
+    .maybeSingle();
+  if (data?.unit_id) {
+    await supabase.from("units").update({ status: "vacant" }).eq("id", data.unit_id);
+  }
+}
+
+export async function terminateLeaseAction(formData: FormData): Promise<void> {
+  const id = String(formData.get("id") ?? "").trim();
+  const locale = String(formData.get("locale") ?? "ar").trim() || "ar";
+  if (!id) return;
+
+  const supabase = await createClient();
+  await supabase.from("leases").update({ status: "terminated" }).eq("id", id);
+  await freeLeaseUnit(supabase, id);
+
+  revalidatePath(`/${locale}/leases`);
+  revalidatePath(`/${locale}/leases/${id}`);
+  redirect(`/${locale}/leases/${id}`);
+}
+
+export async function deleteLeaseAction(formData: FormData): Promise<void> {
+  const id = String(formData.get("id") ?? "").trim();
+  const locale = String(formData.get("locale") ?? "ar").trim() || "ar";
+  if (!id) return;
+
+  const supabase = await createClient();
+  await freeLeaseUnit(supabase, id);
+  const { error } = await supabase.from("leases").delete().eq("id", id);
+
+  if (error) redirect(`/${locale}/leases/${id}`);
+  revalidatePath(`/${locale}/leases`);
+  redirect(`/${locale}/leases`);
+}
