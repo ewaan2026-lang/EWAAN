@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { ArrowIcon } from "@/components/ui/icons";
+import { PrintButton } from "@/components/invoices/print-button";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ export default async function OwnerStatementPage({
   const { locale, id } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("owners");
+  const tc = await getTranslations("common");
   const intlLocale = locale === "ar" ? "ar-SA-u-nu-latn" : "en-US";
 
   const supabase = await createClient();
@@ -90,13 +92,16 @@ export default async function OwnerStatementPage({
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link
-        href={`/owners/${id}`}
-        className="mb-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-teal-900/60 transition hover:text-brand-teal-900"
-      >
-        <ArrowIcon className="h-4 w-4 rtl:rotate-180" />
-        {owner.full_name}
-      </Link>
+      <div className="mb-5 flex items-center justify-between gap-3 no-print">
+        <Link
+          href={`/owners/${id}`}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-teal-900/60 transition hover:text-brand-teal-900"
+        >
+          <ArrowIcon className="h-4 w-4 rtl:rotate-180" />
+          {owner.full_name}
+        </Link>
+        <PrintButton label={tc("print")} />
+      </div>
 
       <div className="mb-7">
         <h1 className="text-2xl font-extrabold tracking-tight text-brand-teal-900 sm:text-[28px]">
