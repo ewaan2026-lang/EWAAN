@@ -4,6 +4,11 @@ import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { EmptyState } from "@/components/ui/empty-state";
 import { DeleteButton } from "@/components/ui/delete-button";
+import { MediaGallery } from "@/components/media/media-gallery";
+import {
+  PriorityBadge,
+  MaintenanceStatusBadge,
+} from "@/components/maintenance/badges";
 import { deleteTenantAction } from "@/lib/actions/tenants";
 import {
   ArrowIcon,
@@ -37,21 +42,32 @@ export default async function TenantDetailPage({
 
   const supabase = await createClient();
 
+  const tmedia = await getTranslations("media");
+  const tm = await getTranslations("maintenance");
+
   const { data: tenant } = await supabase
     .from("tenants")
-    .select("id, full_name, phone, email, national_id")
+    .select("id, full_name, phone, email, national_id, organization_id")
     .eq("id", id)
     .maybeSingle();
 
   if (!tenant) notFound();
 
-  const { data: leases } = await supabase
-    .from("leases")
-    .select("id, contract_number, status, start_date, end_date, rent_amount")
-    .eq("tenant_id", id)
-    .order("start_date", { ascending: false });
+  const [{ data: leases }, { data: requests }] = await Promise.all([
+    supabase
+      .from("leases")
+      .select("id, contract_number, status, start_date, end_date, rent_amount")
+      .eq("tenant_id", id)
+      .order("start_date", { ascending: false }),
+    supabase
+      .from("maintenance_requests")
+      .select("id, title, status, priority")
+      .eq("tenant_id", id)
+      .order("created_at", { ascending: false }),
+  ]);
 
   const leaseList = leases ?? [];
+  const requestList = requests ?? [];
 
   const contacts: { icon: React.ReactNode; value: string }[] = [];
   if (tenant.phone) contacts.push({ icon: <PhoneIcon className="h-4 w-4" />, value: tenant.phone });
@@ -150,6 +166,41 @@ export default async function TenantDetailPage({
           ))}
         </div>
       )}
+
+      {/* طلبات المستأجر */}
+      {requestList.length > 0 ? (
+        <div className="mt-8">
+          <h2 className="mb-4 text-lg font-bold text-brand-teal-900">{tm("title")}</h2>
+          <div className="space-y-3">
+            {requestList.map((r) => (
+              <Link
+                key={r.id}
+                href={`/maintenance/${r.id}`}
+                className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-brand-teal/10 bg-white p-4 shadow-card transition hover:border-brand-teal/25"
+              >
+                <p className="text-sm font-bold text-brand-teal-900">{r.title}</p>
+                <div className="flex items-center gap-2">
+                  <PriorityBadge priority={r.priority} />
+                  <MaintenanceStatusBadge status={r.status} />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
+      {/* صور الاستلام */}
+      <div className="mt-8">
+        <MediaGallery
+          organizationId={tenant.organization_id}
+          entityType="tenant"
+          entityId={tenant.id}
+          kind="image"
+          title={tmedia("handover")}
+          redirectPath={`/tenants/${id}`}
+          locale={locale}
+        />
+      </div>
     </div>
   );
 }
