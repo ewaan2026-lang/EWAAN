@@ -7,6 +7,7 @@ import { UnitForm } from "@/components/units/unit-form";
 import { UnitCard, type UnitCardData } from "@/components/units/unit-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { DeleteButton } from "@/components/ui/delete-button";
+import { MediaGallery } from "@/components/media/media-gallery";
 import { deletePropertyAction } from "@/lib/actions/properties";
 import { ArrowIcon, DoorIcon, MapPinIcon, PencilIcon } from "@/components/ui/icons";
 import type { Json } from "@ewaan/db";
@@ -30,12 +31,13 @@ export default async function PropertyDetailPage({
   const t = await getTranslations("properties");
   const tu = await getTranslations("units");
   const tc = await getTranslations("common");
+  const tmedia = await getTranslations("media");
 
   const supabase = await createClient();
 
   const { data: property } = await supabase
     .from("properties")
-    .select("id, name, property_type, address, national_address, deed_number")
+    .select("id, name, property_type, address, national_address, deed_number, organization_id, whatsapp_group_url, services")
     .eq("id", id)
     .maybeSingle();
 
@@ -100,6 +102,19 @@ export default async function PropertyDetailPage({
           ) : null}
         </div>
       ) : null}
+
+      {/* صور العقار */}
+      <div className="mb-8">
+        <MediaGallery
+          organizationId={property.organization_id}
+          entityType="property"
+          entityId={property.id}
+          kind="image"
+          title={tmedia("photos")}
+          redirectPath={`/properties/${id}`}
+          locale={locale}
+        />
+      </div>
 
       {/* قسم الوحدات */}
       <div className="mb-4 flex items-center justify-between gap-3">

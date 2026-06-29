@@ -452,6 +452,17 @@
     "errorGeneric": "تعذّر إرسال الطلب. حاول مرة أخرى.",
     "submitted": "تم إرسال طلبك بنجاح."
   },
+  "media": {
+    "photos": "الصور",
+    "floorPlans": "المخططات",
+    "documents": "المستندات",
+    "handover": "صور الاستلام",
+    "upload": "رفع صورة",
+    "uploadPlan": "رفع مخطط",
+    "uploading": "جارٍ الرفع…",
+    "empty": "لا توجد صور بعد.",
+    "uploadError": "تعذّر رفع الملف. حاول مرة أخرى."
+  },
   "propertyTypes": {
     "residential_building": "مبنى سكني",
     "villa": "فيلا",
