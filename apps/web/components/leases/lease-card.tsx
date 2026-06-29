@@ -23,7 +23,7 @@ export async function LeaseCard({
   locale: string;
 }) {
   const t = await getTranslations("leases.labels");
-  const rent = new Intl.NumberFormat(locale === "ar" ? "ar-SA" : "en-US", {
+  const rent = new Intl.NumberFormat(locale === "ar" ? "ar-SA-u-nu-latn" : "en-US", {
     style: "currency",
     currency: "SAR",
     maximumFractionDigits: 0,

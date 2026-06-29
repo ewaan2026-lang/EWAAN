@@ -22,7 +22,7 @@ export default async function PortalPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("portal");
-  const intlLocale = locale === "ar" ? "ar-SA" : "en-US";
+  const intlLocale = locale === "ar" ? "ar-SA-u-nu-latn" : "en-US";
 
   const supabase = await createClient();
   const { data: tenants } = await supabase

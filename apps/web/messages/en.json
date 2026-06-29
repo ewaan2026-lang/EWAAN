@@ -109,7 +109,22 @@
     "errorGeneric": "Could not save the tenant. Please try again.",
     "contactTitle": "Contact details",
     "leasesTitle": "Tenant's leases",
-    "noLeases": "No leases are linked to this tenant yet."
+    "noLeases": "No leases are linked to this tenant yet.",
+    "search": "Search by name, phone or email…",
+    "sortName": "Name (A–Z)",
+    "sortMostLeases": "Most leases",
+    "filterAll": "All",
+    "filterActive": "With active lease",
+    "filterNoLease": "Without leases",
+    "results": "{count} tenants",
+    "noResults": "No tenants match your search.",
+    "statsTenants": "Total tenants",
+    "statsLeases": "Total leases",
+    "statsActive": "Active leases",
+    "actionCall": "Call",
+    "actionEmail": "Email",
+    "actionWhatsapp": "WhatsApp",
+    "leasesCount": "{count} leases"
   },
   "owners": {
     "title": "Owners",
