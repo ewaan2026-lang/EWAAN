@@ -5,7 +5,10 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveOrgId } from "@/lib/org";
 
-export type OwnerState = { error?: "name" | "generic" };
+export type OwnerState = {
+  error?: "name" | "generic";
+  created?: { id: string; label: string };
+};
 
 function toNumber(v: FormDataEntryValue | null): number | null {
   const s = String(v ?? "").trim();
@@ -46,6 +49,10 @@ export async function createOwnerAction(
   if (error || !data) return { error: "generic" };
 
   revalidatePath(`/${locale}/owners`);
+
+  if (String(formData.get("__modal") ?? "") === "1") {
+    return { created: { id: data.id, label: fullName } };
+  }
   redirect(`/${locale}/owners/${data.id}`);
 }
 
