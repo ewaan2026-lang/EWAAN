@@ -294,6 +294,8 @@
   "leases": {
     "title": "Leases",
     "subtitle": "Lease contracts, their lifecycle and payment schedules",
+    "contract": "Lease contract",
+    "printContract": "Print / Save PDF",
     "add": "Create lease",
     "addFirst": "Create your first lease",
     "emptyTitle": "No leases yet",
