@@ -9,6 +9,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { MediaGallery } from "@/components/media/media-gallery";
 import { HeroImage } from "@/components/media/hero-image";
+import { LeafletMap } from "@/components/map/leaflet-map";
 import { PropertyReminders } from "@/components/properties/property-reminders";
 import { deletePropertyAction } from "@/lib/actions/properties";
 import { ArrowIcon, DoorIcon, MapPinIcon, PencilIcon, WhatsAppIcon } from "@/components/ui/icons";
@@ -34,12 +35,13 @@ export default async function PropertyDetailPage({
   const tu = await getTranslations("units");
   const tc = await getTranslations("common");
   const tmedia = await getTranslations("media");
+  const tmap = await getTranslations("map");
 
   const supabase = await createClient();
 
   const { data: property } = await supabase
     .from("properties")
-    .select("id, name, property_type, address, national_address, deed_number, organization_id, whatsapp_group_url, services")
+    .select("id, name, property_type, address, national_address, deed_number, organization_id, whatsapp_group_url, services, latitude, longitude")
     .eq("id", id)
     .maybeSingle();
 
@@ -164,6 +166,33 @@ export default async function PropertyDetailPage({
           locale={locale}
         />
       </div>
+
+      {/* الموقع على الخريطة */}
+      {property.latitude != null && property.longitude != null ? (
+        <div className="mb-8">
+          <div className="relative overflow-hidden rounded-2xl border border-brand-teal/10 bg-white shadow-luxe">
+            <span className="pointer-events-none absolute inset-x-0 top-0 z-[1000] h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-90" />
+            <div className="flex items-center justify-between gap-3 px-5 py-3.5">
+              <h2 className="flex items-center gap-2 text-base font-bold text-brand-teal-900">
+                <MapPinIcon className="h-4 w-4 text-brand-teal" />
+                {tmap("locationTitle")}
+              </h2>
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${property.latitude},${property.longitude}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-brand-teal/10 px-3.5 py-2 text-xs font-bold text-brand-teal-900 transition hover:bg-brand-teal hover:text-white"
+              >
+                <MapPinIcon className="h-3.5 w-3.5" />
+                {tmap("directions")}
+              </a>
+            </div>
+            <div className="h-72 w-full">
+              <LeafletMap lat={property.latitude} lng={property.longitude} zoom={15} />
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       {/* قسم الوحدات */}
       <div className="mb-4 flex items-center justify-between gap-3">

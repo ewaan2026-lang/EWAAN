@@ -475,6 +475,16 @@
     "overdue": "Overdue",
     "waived": "Waived"
   },
+  "map": {
+    "title": "Location",
+    "locationTitle": "Property location",
+    "pickerHint": "Click the map or drag the pin to set the location, or type the coordinates manually.",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "clear": "Clear location",
+    "directions": "Directions",
+    "noLocation": "No location set for this property yet."
+  },
   "portal": {
     "title": "Tenant portal",
     "portalLabel": "Tenant portal",
