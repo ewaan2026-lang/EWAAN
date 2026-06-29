@@ -9,6 +9,7 @@ import {
   type PropertyState,
 } from "@/lib/actions/properties";
 import { Field, fieldClass } from "@/components/ui/field";
+import { LocationPicker } from "@/components/map/location-picker";
 
 const initialState: PropertyState = {};
 const propertyTypes = Constants.public.Enums.property_type;
@@ -26,6 +27,8 @@ export type PropertyInitial = {
   owner_id: string;
   services: string[];
   whatsapp_group_url: string;
+  latitude: number | null;
+  longitude: number | null;
 };
 
 export function PropertyForm({
@@ -38,6 +41,7 @@ export function PropertyForm({
   const t = useTranslations("properties");
   const tp = useTranslations("propertyTypes");
   const tc = useTranslations("common");
+  const tm = useTranslations("map");
   const locale = useLocale();
 
   const action = initial
@@ -165,6 +169,18 @@ export function PropertyForm({
           className={`${fieldClass} text-start`}
         />
       </Field>
+
+      <div>
+        <div className="mb-2 flex items-center gap-2">
+          <span className="h-4 w-1 rounded-full bg-gradient-to-b from-brand-gold to-brand-brass" />
+          <p className="text-sm font-bold text-brand-teal-900">{tm("locationTitle")}</p>
+          <span className="text-xs font-medium text-brand-teal-900/45">{tc("optional")}</span>
+        </div>
+        <LocationPicker
+          initialLat={initial?.latitude ?? null}
+          initialLng={initial?.longitude ?? null}
+        />
+      </div>
 
       {state.error ? (
         <p role="alert" className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">

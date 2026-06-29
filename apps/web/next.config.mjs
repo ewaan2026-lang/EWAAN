@@ -5,7 +5,7 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["@ewaan/db"],
+  transpilePackages: ["@ewaan/db", "react-leaflet", "@react-leaflet/core"],
 };
 
 export default withNextIntl(nextConfig);

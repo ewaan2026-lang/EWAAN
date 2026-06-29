@@ -37,6 +37,13 @@ function parseProperty(formData: FormData) {
     .map((s) => s.trim())
     .filter(Boolean);
 
+  const latRaw = parseFloat(String(formData.get("latitude") ?? ""));
+  const lngRaw = parseFloat(String(formData.get("longitude") ?? ""));
+  const latitude =
+    Number.isFinite(latRaw) && latRaw >= -90 && latRaw <= 90 ? latRaw : null;
+  const longitude =
+    Number.isFinite(lngRaw) && lngRaw >= -180 && lngRaw <= 180 ? lngRaw : null;
+
   return {
     property_type,
     address:
@@ -46,6 +53,8 @@ function parseProperty(formData: FormData) {
     owner_id: ownerId || null,
     services,
     whatsapp_group_url: String(formData.get("whatsapp_group_url") ?? "").trim() || null,
+    latitude,
+    longitude,
   };
 }
 
