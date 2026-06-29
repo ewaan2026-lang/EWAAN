@@ -452,6 +452,17 @@
     "errorGeneric": "Could not submit the request. Please try again.",
     "submitted": "Your request was submitted successfully."
   },
+  "media": {
+    "photos": "Photos",
+    "floorPlans": "Floor plans",
+    "documents": "Documents",
+    "handover": "Handover photos",
+    "upload": "Upload photo",
+    "uploadPlan": "Upload plan",
+    "uploading": "Uploading…",
+    "empty": "No photos yet.",
+    "uploadError": "Could not upload the file. Please try again."
+  },
   "propertyTypes": {
     "residential_building": "Residential building",
     "villa": "Villa",
