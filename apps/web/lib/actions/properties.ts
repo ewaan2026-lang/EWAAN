@@ -32,6 +32,10 @@ function parseProperty(formData: FormData) {
   const nationalAddress = String(formData.get("national_address") ?? "").trim();
   const deedNumber = String(formData.get("deed_number") ?? "").trim();
   const ownerId = String(formData.get("owner_id") ?? "").trim();
+  const services = String(formData.get("services") ?? "")
+    .split(/[,،]/)
+    .map((s) => s.trim())
+    .filter(Boolean);
 
   return {
     property_type,
@@ -40,6 +44,8 @@ function parseProperty(formData: FormData) {
     national_address: nationalAddress || null,
     deed_number: deedNumber || null,
     owner_id: ownerId || null,
+    services,
+    whatsapp_group_url: String(formData.get("whatsapp_group_url") ?? "").trim() || null,
   };
 }
 
