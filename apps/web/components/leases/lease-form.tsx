@@ -9,6 +9,8 @@ import {
   type LeaseState,
 } from "@/lib/actions/leases";
 import { Field, fieldClass } from "@/components/ui/field";
+import { CreatableSelect } from "@/components/ui/creatable-select";
+import { TenantForm } from "@/components/tenants/tenant-form";
 
 const initialState: LeaseState = {};
 const frequencies = Constants.public.Enums.payment_frequency;
@@ -54,6 +56,7 @@ export function LeaseForm({
   initial?: LeaseInitial;
 }) {
   const t = useTranslations("leases");
+  const tt = useTranslations("tenants");
   const tf = useTranslations("paymentFrequency");
   const tl = useTranslations("lateFeeType");
   const ts = useTranslations("leaseStatus");
@@ -87,16 +90,15 @@ export function LeaseForm({
             </select>
           </Field>
           <Field label={t("fields.tenant")} htmlFor="tenant_id">
-            <select id="tenant_id" name="tenant_id" required defaultValue={initial?.tenant_id ?? ""} className={fieldClass}>
-              <option value="" disabled>
-                —
-              </option>
-              {tenants.map((tn) => (
-                <option key={tn.id} value={tn.id}>
-                  {tn.full_name}
-                </option>
-              ))}
-            </select>
+            <CreatableSelect
+              name="tenant_id"
+              required
+              defaultValue={initial?.tenant_id ?? ""}
+              options={tenants.map((tn) => ({ id: tn.id, label: tn.full_name }))}
+              addLabel={tt("add")}
+              title={tt("add")}
+              renderForm={(onCreated) => <TenantForm onCreated={onCreated} />}
+            />
           </Field>
         </div>
       </section>

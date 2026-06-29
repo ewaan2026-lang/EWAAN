@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import {
   createTenantAction,
@@ -19,7 +19,13 @@ export type TenantInitial = {
   national_id: string;
 };
 
-export function TenantForm({ initial }: { initial?: TenantInitial }) {
+export function TenantForm({
+  initial,
+  onCreated,
+}: {
+  initial?: TenantInitial;
+  onCreated?: (o: { id: string; label: string }) => void;
+}) {
   const t = useTranslations("tenants");
   const tc = useTranslations("common");
   const locale = useLocale();
@@ -28,8 +34,13 @@ export function TenantForm({ initial }: { initial?: TenantInitial }) {
     : createTenantAction.bind(null, locale);
   const [state, formAction, pending] = useActionState(action, initialState);
 
+  useEffect(() => {
+    if (state.created && onCreated) onCreated(state.created);
+  }, [state.created, onCreated]);
+
   return (
     <form action={formAction} className="space-y-5">
+      {onCreated ? <input type="hidden" name="__modal" value="1" /> : null}
       <Field label={t("fields.name")} htmlFor="full_name">
         <input
           id="full_name"

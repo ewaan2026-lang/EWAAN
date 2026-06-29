@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import {
   createOwnerAction,
@@ -22,7 +22,13 @@ export type OwnerInitial = {
   notes: string;
 };
 
-export function OwnerForm({ initial }: { initial?: OwnerInitial }) {
+export function OwnerForm({
+  initial,
+  onCreated,
+}: {
+  initial?: OwnerInitial;
+  onCreated?: (o: { id: string; label: string }) => void;
+}) {
   const t = useTranslations("owners");
   const tc = useTranslations("common");
   const locale = useLocale();
@@ -31,8 +37,13 @@ export function OwnerForm({ initial }: { initial?: OwnerInitial }) {
     : createOwnerAction.bind(null, locale);
   const [state, formAction, pending] = useActionState(action, initialState);
 
+  useEffect(() => {
+    if (state.created && onCreated) onCreated(state.created);
+  }, [state.created, onCreated]);
+
   return (
     <form action={formAction} className="space-y-5">
+      {onCreated ? <input type="hidden" name="__modal" value="1" /> : null}
       <Field label={t("fields.name")} htmlFor="full_name">
         <input
           id="full_name"

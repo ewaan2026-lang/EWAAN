@@ -5,7 +5,10 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveOrgId } from "@/lib/org";
 
-export type TenantState = { error?: "name" | "generic" };
+export type TenantState = {
+  error?: "name" | "generic";
+  created?: { id: string; label: string };
+};
 
 function parseTenant(formData: FormData) {
   return {
@@ -36,6 +39,10 @@ export async function createTenantAction(
   if (error || !data) return { error: "generic" };
 
   revalidatePath(`/${locale}/tenants`);
+
+  if (String(formData.get("__modal") ?? "") === "1") {
+    return { created: { id: data.id, label: fullName } };
+  }
   redirect(`/${locale}/tenants/${data.id}`);
 }
 

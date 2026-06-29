@@ -4,6 +4,8 @@ import { useActionState, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { createInvoiceAction, type InvoiceState } from "@/lib/actions/invoices";
 import { Field, fieldClass } from "@/components/ui/field";
+import { CreatableSelect } from "@/components/ui/creatable-select";
+import { TenantForm } from "@/components/tenants/tenant-form";
 
 const initialState: InvoiceState = {};
 const TYPES = ["rent", "management_fee", "service", "deposit", "other"] as const;
@@ -22,6 +24,7 @@ export function InvoiceForm({
 }) {
   const t = useTranslations("invoices");
   const tc = useTranslations("common");
+  const tt = useTranslations("tenants");
   const locale = useLocale();
   const action = createInvoiceAction.bind(null, locale);
   const [state, formAction, pending] = useActionState(action, initialState);
@@ -43,16 +46,14 @@ export function InvoiceForm({
   return (
     <form action={formAction} className="space-y-5">
       <Field label={t("fields.tenant")} htmlFor="tenant_id">
-        <select id="tenant_id" name="tenant_id" required defaultValue="" className={fieldClass}>
-          <option value="" disabled>
-            —
-          </option>
-          {tenants.map((x) => (
-            <option key={x.id} value={x.id}>
-              {x.full_name}
-            </option>
-          ))}
-        </select>
+        <CreatableSelect
+          name="tenant_id"
+          required
+          options={tenants.map((x) => ({ id: x.id, label: x.full_name }))}
+          addLabel={tt("add")}
+          title={tt("add")}
+          renderForm={(onCreated) => <TenantForm onCreated={onCreated} />}
+        />
       </Field>
 
       {leases.length > 0 ? (

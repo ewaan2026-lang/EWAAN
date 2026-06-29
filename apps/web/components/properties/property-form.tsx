@@ -9,6 +9,8 @@ import {
   type PropertyState,
 } from "@/lib/actions/properties";
 import { Field, fieldClass } from "@/components/ui/field";
+import { CreatableSelect } from "@/components/ui/creatable-select";
+import { OwnerForm } from "@/components/owners/owner-form";
 import { PropertyLocationSection } from "@/components/address/property-location-section";
 
 const initialState: PropertyState = {};
@@ -43,6 +45,7 @@ export function PropertyForm({
   const t = useTranslations("properties");
   const tp = useTranslations("propertyTypes");
   const tc = useTranslations("common");
+  const towner = useTranslations("owners");
   const locale = useLocale();
 
   const action = initial
@@ -79,23 +82,17 @@ export function PropertyForm({
         </select>
       </Field>
 
-      {owners.length > 0 ? (
-        <Field label={t("fields.owner")} htmlFor="owner_id" hint={tc("optional")}>
-          <select
-            id="owner_id"
-            name="owner_id"
-            defaultValue={initial?.owner_id ?? ""}
-            className={fieldClass}
-          >
-            <option value="">{t("fields.ownerNone")}</option>
-            {owners.map((o) => (
-              <option key={o.id} value={o.id}>
-                {o.full_name}
-              </option>
-            ))}
-          </select>
-        </Field>
-      ) : null}
+      <Field label={t("fields.owner")} htmlFor="owner_id" hint={tc("optional")}>
+        <CreatableSelect
+          name="owner_id"
+          defaultValue={initial?.owner_id ?? ""}
+          placeholder={t("fields.ownerNone")}
+          options={owners.map((o) => ({ id: o.id, label: o.full_name }))}
+          addLabel={towner("add")}
+          title={towner("add")}
+          renderForm={(onCreated) => <OwnerForm onCreated={onCreated} />}
+        />
+      </Field>
 
       <PropertyLocationSection
         initial={{
