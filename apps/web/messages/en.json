@@ -548,6 +548,13 @@
       "cancelled": "Cancelled"
     }
   },
+  "notifications": {
+    "remind": "Remind",
+    "sent": "Sent",
+    "notConfigured": "Email not set up",
+    "noEmail": "Tenant has no email",
+    "failed": "Failed to send"
+  },
   "portal": {
     "title": "Tenant portal",
     "portalLabel": "Tenant portal",

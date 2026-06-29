@@ -6,6 +6,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { Badge } from "@/components/ui/badge";
 import { ScheduleStatusBadge } from "@/components/leases/status-badge";
 import { recordPaymentAction } from "@/lib/actions/payments";
+import { ReminderButton } from "@/components/payments/reminder-button";
 import { CardIcon, PlusIcon } from "@/components/ui/icons";
 
 export const dynamic = "force-dynamic";
@@ -125,16 +126,19 @@ export default async function PaymentsPage({
                     <ScheduleStatusBadge status={r.status} />
                   )}
                   {r.status !== "paid" && r.status !== "waived" ? (
-                    <form action={recordPaymentAction}>
-                      <input type="hidden" name="schedule_id" value={r.id} />
-                      <input type="hidden" name="locale" value={locale} />
-                      <button
-                        type="submit"
-                        className="rounded-lg bg-brand-teal/10 px-3 py-1.5 text-xs font-bold text-brand-teal-900 transition hover:bg-brand-teal hover:text-white"
-                      >
-                        {t("markPaid")}
-                      </button>
-                    </form>
+                    <>
+                      <ReminderButton scheduleId={r.id} />
+                      <form action={recordPaymentAction}>
+                        <input type="hidden" name="schedule_id" value={r.id} />
+                        <input type="hidden" name="locale" value={locale} />
+                        <button
+                          type="submit"
+                          className="rounded-lg bg-brand-teal/10 px-3 py-1.5 text-xs font-bold text-brand-teal-900 transition hover:bg-brand-teal hover:text-white"
+                        >
+                          {t("markPaid")}
+                        </button>
+                      </form>
+                    </>
                   ) : null}
                 </div>
               </div>
