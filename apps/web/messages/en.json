@@ -68,7 +68,24 @@
     "leases": "Leases",
     "payments": "Payments",
     "maintenance": "Maintenance",
+    "reports": "Reports",
     "settings": "Settings"
+  },
+  "reports": {
+    "title": "Reports & analytics",
+    "subtitle": "A financial and operational view of your portfolio",
+    "kpi": {
+      "collected": "Total collected",
+      "outstanding": "Total outstanding",
+      "occupancy": "Occupancy",
+      "activeLeases": "Active leases",
+      "depositsHeld": "Deposits held",
+      "expectedAnnual": "Expected annual revenue"
+    },
+    "revenueTitle": "Collected revenue (last 6 months)",
+    "unitsByStatusTitle": "Units by status",
+    "leasesByStatusTitle": "Leases by status",
+    "noData": "Not enough data yet."
   },
   "tenants": {
     "title": "Tenants",

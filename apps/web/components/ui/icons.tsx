@@ -211,3 +211,12 @@ export function TrashIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function ChartIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M3 3v18h18" />
+      <path d="M7 14v3M12 9v8M17 5v12" />
+    </svg>
+  );
+}
