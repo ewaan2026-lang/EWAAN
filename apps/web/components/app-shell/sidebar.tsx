@@ -22,7 +22,7 @@ export function Sidebar({
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col bg-gradient-to-b from-brand-teal-900 to-brand-teal text-white md:flex">
+    <aside className="no-print sticky top-0 hidden h-screen w-64 shrink-0 flex-col bg-gradient-to-b from-brand-teal-900 to-brand-teal text-white md:flex">
       {/* العلامة */}
       <div className="flex items-center gap-3 px-5 pb-6 pt-6">
         <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-xl font-extrabold text-brand-gold ring-1 ring-white/15">
