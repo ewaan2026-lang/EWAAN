@@ -19,11 +19,17 @@ export default async function EditUnitPage({
   const supabase = await createClient();
   const { data: unit } = await supabase
     .from("units")
-    .select("id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent, furnished, features, listing_text, has_water_tank")
+    .select("id, unit_number, status, floor, area_sqm, bedrooms, bathrooms, base_rent, furnished, features, listing_text, has_water_tank, unit_type_id, organization_id")
     .eq("id", unitId)
     .maybeSingle();
 
   if (!unit) notFound();
+
+  const { data: unitTypes } = await supabase
+    .from("unit_types")
+    .select("id, name")
+    .eq("organization_id", unit.organization_id)
+    .order("name");
 
   return (
     <div className="mx-auto max-w-3xl">
@@ -35,7 +41,7 @@ export default async function EditUnitPage({
         {tc("back")}
       </Link>
 
-      <UnitForm propertyId={id} initial={unit as UnitInitial} />
+      <UnitForm propertyId={id} initial={unit as UnitInitial} unitTypes={unitTypes ?? []} />
     </div>
   );
 }

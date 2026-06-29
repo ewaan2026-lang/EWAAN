@@ -279,7 +279,8 @@
     "hasTank": "Has tank",
     "detailInfoTitle": "Unit details",
     "floorPlanTitle": "Floor plan",
-    "rentLabel": "Rent"
+    "rentLabel": "Rent",
+    "typeNone": "No type"
   },
   "leases": {
     "title": "Leases",
@@ -381,6 +382,13 @@
     "saved": "Changes saved.",
     "errorName": "Organization name is required.",
     "errorGeneric": "Could not save. Please try again.",
+    "unitTypesTitle": "Unit types",
+    "unitTypesSubtitle": "Define your unit types to categorize them (apartment, studio, villa…)",
+    "unitTypeName": "Type name",
+    "unitTypeNamePlaceholder": "e.g. Two-floor apartment",
+    "unitTypeDesc": "Description",
+    "addType": "Add type",
+    "noTypes": "No types yet.",
     "membersTitle": "Members & roles",
     "membersSubtitle": "Your organization's members and their roles",
     "memberRole": "Role",

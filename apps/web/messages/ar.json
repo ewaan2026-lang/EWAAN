@@ -279,7 +279,8 @@
     "hasTank": "يوجد خزان",
     "detailInfoTitle": "تفاصيل الوحدة",
     "floorPlanTitle": "مخطط الوحدة",
-    "rentLabel": "الإيجار"
+    "rentLabel": "الإيجار",
+    "typeNone": "بدون نوع"
   },
   "leases": {
     "title": "العقود",
@@ -381,6 +382,13 @@
     "saved": "تم حفظ التغييرات.",
     "errorName": "اسم المؤسسة مطلوب.",
     "errorGeneric": "تعذّر الحفظ. حاول مرة أخرى.",
+    "unitTypesTitle": "أنواع الوحدات",
+    "unitTypesSubtitle": "عرّف أنواع وحداتك لتصنيفها (شقة، استوديو، فيلا…)",
+    "unitTypeName": "اسم النوع",
+    "unitTypeNamePlaceholder": "مثال: شقة دورين",
+    "unitTypeDesc": "وصف",
+    "addType": "إضافة نوع",
+    "noTypes": "لا توجد أنواع بعد.",
     "membersTitle": "الأعضاء والأدوار",
     "membersSubtitle": "أعضاء مؤسستك وأدوارهم",
     "memberRole": "الدور",
