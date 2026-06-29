@@ -244,7 +244,20 @@
     "labelFloor": "Floor {n}",
     "labelArea": "{n} m²",
     "labelBeds": "{n} beds",
-    "labelBaths": "{n} baths"
+    "labelBaths": "{n} baths",
+    "features": "Features",
+    "featuresHint": "separate features with commas",
+    "featuresPlaceholder": "e.g. AC, fitted kitchen, balcony",
+    "listing": "Listing copy",
+    "listingPlaceholder": "Marketing text to advertise the unit…",
+    "generateListing": "Auto-generate",
+    "copy": "Copy",
+    "copied": "Copied",
+    "waterTank": "Water tank",
+    "hasTank": "Has tank",
+    "detailInfoTitle": "Unit details",
+    "floorPlanTitle": "Floor plan",
+    "rentLabel": "Rent"
   },
   "leases": {
     "title": "Leases",

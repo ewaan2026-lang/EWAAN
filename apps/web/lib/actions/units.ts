@@ -23,6 +23,19 @@ function toNumber(v: FormDataEntryValue | null): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
+// حقول عميقة مشتركة بين الإضافة والتعديل.
+function deepFields(formData: FormData) {
+  const features = String(formData.get("features") ?? "")
+    .split(/[,،]/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return {
+    features,
+    listing_text: String(formData.get("listing_text") ?? "").trim() || null,
+    has_water_tank: formData.get("has_water_tank") === "on",
+  };
+}
+
 export async function createUnitAction(
   locale: string,
   propertyId: string,
@@ -54,6 +67,7 @@ export async function createUnitAction(
     bathrooms: toNumber(formData.get("bathrooms")),
     base_rent: toNumber(formData.get("base_rent")),
     furnished: formData.get("furnished") === "on",
+    ...deepFields(formData),
   });
 
   if (error) return { error: "generic" };
@@ -91,6 +105,7 @@ export async function updateUnitAction(
       bathrooms: toNumber(formData.get("bathrooms")),
       base_rent: toNumber(formData.get("base_rent")),
       furnished: formData.get("furnished") === "on",
+      ...deepFields(formData),
     })
     .eq("id", unitId);
 
