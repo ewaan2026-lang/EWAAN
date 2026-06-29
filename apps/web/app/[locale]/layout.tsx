@@ -1,10 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Tajawal } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { PwaRegister } from "@/components/pwa-register";
 import "../globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#00809D",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 const tajawal = Tajawal({
   subsets: ["arabic", "latin"],
@@ -20,9 +28,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "brand" });
+  const name = t("name");
   return {
-    title: `${t("name")} — ${t("tagline")}`,
+    title: `${name} — ${t("tagline")}`,
     description: t("tagline"),
+    applicationName: name,
+    manifest: "/manifest.webmanifest",
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: name,
+    },
+    icons: {
+      icon: "/icons/icon-192.png",
+      apple: "/icons/apple-touch-icon.png",
+    },
   };
 }
 
@@ -51,6 +71,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <PwaRegister />
       </body>
     </html>
   );
