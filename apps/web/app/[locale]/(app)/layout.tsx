@@ -5,7 +5,7 @@ import { getActiveOrgId } from "@/lib/org";
 import { signOutAction } from "@/lib/actions/auth";
 import { Link } from "@/i18n/navigation";
 import { Sidebar } from "@/components/app-shell/sidebar";
-import { BottomNav } from "@/components/app-shell/bottom-nav";
+import { PillNav } from "@/components/app-shell/pill-nav";
 import { LanguageSwitcher } from "@/components/app-shell/language-switcher";
 import { LogoutIcon, BellIcon } from "@/components/ui/icons";
 
@@ -99,7 +99,7 @@ export default async function AppLayout({
         </main>
       </div>
 
-      <BottomNav />
+      <PillNav />
     </div>
   );
 }
