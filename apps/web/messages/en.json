@@ -548,6 +548,17 @@
       "cancelled": "Cancelled"
     }
   },
+  "pay": {
+    "payNow": "Pay now",
+    "redirecting": "Redirecting…",
+    "notConfigured": "Payments not enabled",
+    "error": "Could not start payment",
+    "successTitle": "Payment successful",
+    "successBody": "Thank you, your payment was received and updated.",
+    "failedTitle": "Payment incomplete",
+    "failedBody": "We couldn't confirm the payment. Please try again or contact management.",
+    "backToPortal": "Back to portal"
+  },
   "notifications": {
     "remind": "Remind",
     "sent": "Sent",
