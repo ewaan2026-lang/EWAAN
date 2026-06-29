@@ -159,3 +159,12 @@ body {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* إخفاء شريط التمرير لشريط الأقراص (pill nav) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
