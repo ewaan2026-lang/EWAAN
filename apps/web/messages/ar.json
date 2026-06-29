@@ -259,6 +259,50 @@
     "emptyBody": "أنشئ عقداً لتوليد جدول دفعاته، ثم سجّل تحصيلها من هنا.",
     "createLease": "إنشاء عقد"
   },
+  "maintenance": {
+    "title": "الصيانة",
+    "subtitle": "طلبات الصيانة وحالتها وأولويّتها",
+    "add": "طلب صيانة",
+    "addFirst": "أنشئ أول طلب",
+    "emptyTitle": "لا توجد طلبات صيانة",
+    "emptyBody": "أنشئ أول طلب صيانة لمتابعته من الإنشاء حتى الإغلاق.",
+    "newTitle": "طلب صيانة جديد",
+    "newSubtitle": "اختر الوحدة وصف المشكلة وحدّد الأولوية.",
+    "needUnitTitle": "تحتاج وحدة أولاً",
+    "needUnitBody": "أضف عقاراً بوحدة واحدة على الأقل قبل إنشاء طلب صيانة.",
+    "fields": {
+      "unit": "الوحدة",
+      "title": "عنوان الطلب",
+      "titlePlaceholder": "مثال: تسريب في الحمام",
+      "category": "التصنيف",
+      "categoryPlaceholder": "مثال: سباكة، كهرباء",
+      "priority": "الأولوية",
+      "description": "الوصف",
+      "status": "الحالة"
+    },
+    "create": "إنشاء الطلب",
+    "errorUnit": "اختر الوحدة.",
+    "errorTitle": "عنوان الطلب مطلوب.",
+    "errorGeneric": "تعذّر إنشاء الطلب. حاول مرة أخرى.",
+    "detailInfoTitle": "تفاصيل الطلب",
+    "updateStatus": "تحديث الحالة",
+    "reportedAt": "تاريخ الطلب",
+    "noDescription": "لا يوجد وصف."
+  },
+  "maintenancePriority": {
+    "low": "منخفضة",
+    "medium": "متوسطة",
+    "high": "عالية",
+    "urgent": "عاجلة"
+  },
+  "maintenanceStatus": {
+    "new": "جديد",
+    "assigned": "مُسند",
+    "in_progress": "قيد التنفيذ",
+    "on_hold": "معلّق",
+    "completed": "مكتمل",
+    "cancelled": "ملغى"
+  },
   "leaseStatus": {
     "draft": "مسودة",
     "active": "نشط",
