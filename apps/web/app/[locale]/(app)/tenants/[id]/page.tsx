@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { EmptyState } from "@/components/ui/empty-state";
 import { DeleteButton } from "@/components/ui/delete-button";
 import { MediaGallery } from "@/components/media/media-gallery";
+import { DocumentsCard } from "@/components/media/documents-card";
 import {
   PriorityBadge,
   MaintenanceStatusBadge,
@@ -197,6 +198,17 @@ export default async function TenantDetailPage({
           entityId={tenant.id}
           kind="image"
           title={tmedia("handover")}
+          redirectPath={`/tenants/${id}`}
+          locale={locale}
+        />
+      </div>
+
+      {/* مستندات المستأجر */}
+      <div className="mt-8">
+        <DocumentsCard
+          organizationId={tenant.organization_id}
+          entityType="tenant"
+          entityId={tenant.id}
           redirectPath={`/tenants/${id}`}
           locale={locale}
         />
