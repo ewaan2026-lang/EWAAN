@@ -168,3 +168,10 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* أنماط الطباعة (الفواتير) — إخفاء واجهة التطبيق وإظهار المستند فقط */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff !important; }
+  main { padding: 0 !important; }
+}

@@ -56,7 +56,7 @@ export default async function AppLayout({
 
       <div className="flex min-w-0 flex-1 flex-col">
         {/* الشريط العلوي */}
-        <header className="sticky top-0 z-20 flex items-center justify-between gap-3 border-b border-brand-teal/10 bg-white/70 px-4 py-3 backdrop-blur md:px-8">
+        <header className="no-print sticky top-0 z-20 flex items-center justify-between gap-3 border-b border-brand-teal/10 bg-white/70 px-4 py-3 backdrop-blur md:px-8">
           <div className="flex min-w-0 items-center gap-2.5">
             {/* العلامة على الجوال */}
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-teal text-lg font-extrabold text-brand-gold md:hidden">
