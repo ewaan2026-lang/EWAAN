@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveOrgId } from "@/lib/org";
 import { signOutAction } from "@/lib/actions/auth";
+import { Link } from "@/i18n/navigation";
 import { Sidebar } from "@/components/app-shell/sidebar";
 import { BottomNav } from "@/components/app-shell/bottom-nav";
 import { LanguageSwitcher } from "@/components/app-shell/language-switcher";
@@ -71,9 +72,13 @@ export default async function AppLayout({
 
           <div className="flex items-center gap-2.5">
             <LanguageSwitcher />
-            <span className="hidden h-9 w-9 items-center justify-center rounded-lg text-brand-teal-900/35 sm:flex">
+            <Link
+              href="/alerts"
+              aria-label="alerts"
+              className="hidden h-9 w-9 items-center justify-center rounded-lg text-brand-teal-900/40 transition hover:bg-brand-teal/5 hover:text-brand-teal sm:flex"
+            >
               <BellIcon className="h-[18px] w-[18px]" />
-            </span>
+            </Link>
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-teal to-brand-teal-900 text-xs font-extrabold text-white" dir="ltr">
               {initials}
             </span>

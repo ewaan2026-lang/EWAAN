@@ -69,7 +69,18 @@
     "payments": "Payments",
     "maintenance": "Maintenance",
     "reports": "Reports",
+    "alerts": "Alerts",
     "settings": "Settings"
+  },
+  "alerts": {
+    "title": "Alerts",
+    "subtitle": "What needs your attention right now",
+    "overdueTitle": "Overdue payments",
+    "newRequestsTitle": "New maintenance requests",
+    "expiringTitle": "Leases expiring soon",
+    "none": "No alerts — everything looks good ✅",
+    "expiresOn": "Ends {date}",
+    "dueOn": "Due {date}"
   },
   "reports": {
     "title": "Reports & analytics",
