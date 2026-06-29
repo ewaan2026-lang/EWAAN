@@ -236,6 +236,29 @@
       "installment": "دفعة"
     }
   },
+  "payments": {
+    "title": "المدفوعات والتحصيل",
+    "subtitle": "دفعات العقود المجدولة وحالة تحصيلها",
+    "summary": {
+      "collected": "المُحصّل",
+      "outstanding": "المستحق",
+      "overdue": "متأخّر",
+      "installments": "الدفعات"
+    },
+    "cols": {
+      "dueDate": "تاريخ الاستحقاق",
+      "tenant": "المستأجر",
+      "unit": "الوحدة",
+      "amount": "المبلغ",
+      "status": "الحالة"
+    },
+    "markPaid": "تسجيل دفعة",
+    "marking": "جارٍ التسجيل…",
+    "overdueBadge": "متأخّرة",
+    "emptyTitle": "لا توجد دفعات بعد",
+    "emptyBody": "أنشئ عقداً لتوليد جدول دفعاته، ثم سجّل تحصيلها من هنا.",
+    "createLease": "إنشاء عقد"
+  },
   "leaseStatus": {
     "draft": "مسودة",
     "active": "نشط",
