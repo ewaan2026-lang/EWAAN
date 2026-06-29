@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { CountUp } from "@/components/ui/count-up";
 
-// بطاقة إحصائية قابلة للنقر مع أيقونة وعدّاد متحرّك.
+// بطاقة مؤشّر فاخرة: شريط ذهبي علوي + أيقونة + عدّاد متحرّك.
 export function StatLinkCard({
   label,
   value,
@@ -20,34 +20,41 @@ export function StatLinkCard({
 }) {
   const inner = (
     <>
-      <span
-        className={`flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${
-          accent ? "bg-brand-brass/15 text-brand-brass" : "bg-brand-teal/10 text-brand-teal"
-        }`}
-      >
-        {icon}
-      </span>
-      <div className="mt-3">
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-90" />
+      <div className="flex items-center justify-between">
+        <span
+          className={`flex h-11 w-11 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${
+            accent
+              ? "bg-gradient-to-br from-brand-gold/25 to-brand-brass/20 text-brand-brass"
+              : "bg-brand-teal/10 text-brand-teal"
+          }`}
+        >
+          {icon}
+        </span>
+      </div>
+      <div className="mt-4">
         <p
-          className={`text-2xl font-extrabold tabular-nums ${
+          className={`text-[28px] font-extrabold leading-none tabular-nums ${
             accent ? "text-brand-brass" : "text-brand-teal-900"
           }`}
         >
           <CountUp value={value} suffix={suffix} />
         </p>
-        <p className="mt-0.5 text-xs font-medium text-brand-teal-900/50">{label}</p>
+        <p className="mt-1.5 text-xs font-semibold tracking-wide text-brand-teal-900/45">
+          {label}
+        </p>
       </div>
     </>
   );
 
   const cls =
-    "group flex flex-col rounded-2xl border border-brand-teal/10 bg-white p-4 shadow-card transition duration-300";
+    "group relative flex flex-col overflow-hidden rounded-2xl border border-brand-teal/10 bg-white p-5 shadow-card transition duration-300";
 
   if (href) {
     return (
       <Link
         href={href}
-        className={`${cls} hover:-translate-y-1 hover:border-brand-teal/25 hover:shadow-lg`}
+        className={`${cls} hover:-translate-y-1 hover:border-brand-brass/40 hover:shadow-luxe`}
       >
         {inner}
       </Link>

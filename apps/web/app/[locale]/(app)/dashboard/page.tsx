@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CreateOrgForm } from "@/components/create-org-form";
 import { StatLinkCard } from "@/components/dashboard/stat-link-card";
+import { OccupancyRing } from "@/components/dashboard/occupancy-ring";
 import { LeaseStatusBadge } from "@/components/leases/status-badge";
 import {
   BuildingIcon,
@@ -11,7 +12,6 @@ import {
   LayersIcon,
   UsersIcon,
   KeyIcon,
-  GaugeIcon,
   PlusIcon,
 } from "@/components/ui/icons";
 
@@ -71,6 +71,7 @@ export default async function DashboardPage({
     { data: allTenants },
     { data: allUnits },
     { data: allProps },
+    { data: schedules },
   ] = await Promise.all([
     supabase.from("properties").select("*", head),
     supabase.from("units").select("*", head),
@@ -87,6 +88,7 @@ export default async function DashboardPage({
     supabase.from("tenants").select("id, full_name"),
     supabase.from("units").select("id, unit_number, property_id"),
     supabase.from("properties").select("id, name"),
+    supabase.from("payment_schedules").select("amount, status"),
   ]);
 
   const totalUnits = units ?? 0;
@@ -94,6 +96,13 @@ export default async function DashboardPage({
     totalUnits > 0 ? Math.round(((occupied ?? 0) / totalUnits) * 100) : 0;
   const orgName = org?.name ?? "";
   const displayName = user?.email?.split("@")[0] ?? orgName;
+
+  const collected = (schedules ?? [])
+    .filter((s) => s.status === "paid")
+    .reduce((a, s) => a + s.amount, 0);
+  const outstanding = (schedules ?? [])
+    .filter((s) => s.status !== "paid" && s.status !== "waived")
+    .reduce((a, s) => a + s.amount, 0);
 
   const tenantName = new Map((allTenants ?? []).map((x) => [x.id, x.full_name]));
   const propName = new Map((allProps ?? []).map((x) => [x.id, x.name]));
@@ -121,13 +130,52 @@ export default async function DashboardPage({
   ];
 
   return (
-    <div className="mx-auto max-w-5xl">
-      <header className="mb-7">
-        <p className="text-sm text-brand-teal-900/50">{orgName}</p>
-        <h1 className="mt-1 text-2xl font-extrabold tracking-tight text-brand-teal-900 sm:text-[28px]">
-          {t("welcome", { name: displayName })}
-        </h1>
-      </header>
+    <div className="mx-auto max-w-6xl">
+      {/* الهيرو الفاخر */}
+      <section className="relative mb-7 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-night via-brand-ink to-brand-teal-900 p-7 text-white shadow-luxe sm:p-9">
+        <div className="float-slow pointer-events-none absolute -end-24 -top-28 h-72 w-72 rounded-full bg-brand-gold/15 blur-3xl" />
+        <div className="float-slower pointer-events-none absolute -bottom-28 -start-16 h-72 w-72 rounded-full bg-brand-teal/30 blur-3xl" />
+        <span className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-brand-gold to-transparent opacity-70" />
+
+        <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-brand-gold">
+              {orgName}
+            </p>
+            <h1 className="mt-2.5 text-3xl font-extrabold tracking-tight sm:text-4xl">
+              {t("welcome", { name: displayName })}
+            </h1>
+            <p className="mt-1.5 text-sm text-white/55">{t("portfolioPulse")}</p>
+            <div className="mt-5 h-px w-28 bg-gradient-to-r from-brand-gold to-transparent" />
+
+            <div className="mt-6 flex flex-wrap items-center gap-6">
+              <div>
+                <p className="text-2xl font-extrabold text-brand-gold-soft sm:text-3xl" dir="ltr">
+                  {fmt(collected)}
+                </p>
+                <p className="mt-0.5 text-xs font-medium text-white/45">{t("collected")}</p>
+              </div>
+              <span className="h-10 w-px bg-white/10" />
+              <div>
+                <p className="text-2xl font-extrabold text-white sm:text-3xl" dir="ltr">
+                  {fmt(outstanding)}
+                </p>
+                <p className="mt-0.5 text-xs font-medium text-white/45">{t("outstanding")}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-4 rounded-2xl bg-white/5 p-4 ring-1 ring-white/10 backdrop-blur">
+            <OccupancyRing value={occupancy} />
+            <div>
+              <p className="text-sm font-bold text-white">{t("occupancy")}</p>
+              <p className="text-xs text-white/50" dir="ltr">
+                {occupied ?? 0}/{totalUnits} · {t("units")}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* إجراءات سريعة */}
       <div className="mb-7 flex flex-wrap gap-2.5">
@@ -135,20 +183,21 @@ export default async function DashboardPage({
           <Link
             key={a.href}
             href={a.href}
-            className="inline-flex items-center gap-2 rounded-xl border border-brand-teal/15 bg-white px-4 py-2.5 text-sm font-bold text-brand-teal-900 shadow-card transition hover:border-brand-teal/35 hover:bg-brand-teal/5"
+            className="group inline-flex items-center gap-2 rounded-xl border border-brand-teal/15 bg-white px-4 py-2.5 text-sm font-bold text-brand-teal-900 shadow-card transition hover:border-brand-brass/40 hover:shadow-luxe"
           >
-            <PlusIcon className="h-4 w-4 text-brand-teal" />
+            <span className="flex h-5 w-5 items-center justify-center rounded-md bg-brand-gold/15 text-brand-brass transition group-hover:bg-brand-gold/25">
+              <PlusIcon className="h-3.5 w-3.5" />
+            </span>
             {a.label}
           </Link>
         ))}
       </div>
 
       {/* الإحصاءات */}
-      <div className="stagger grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      <div className="stagger grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         <StatLinkCard label={t("properties")} value={properties ?? 0} href="/properties" icon={<BuildingIcon className="h-5 w-5" />} />
         <StatLinkCard label={t("units")} value={totalUnits} href="/properties" icon={<DoorIcon className="h-5 w-5" />} />
-        <StatLinkCard label={t("occupancy")} value={occupancy} suffix="%" accent icon={<GaugeIcon className="h-5 w-5" />} />
-        <StatLinkCard label={t("leases")} value={leases ?? 0} href="/leases" icon={<LayersIcon className="h-5 w-5" />} />
+        <StatLinkCard label={t("leases")} value={leases ?? 0} href="/leases" accent icon={<LayersIcon className="h-5 w-5" />} />
         <StatLinkCard label={t("tenants")} value={tenants ?? 0} href="/tenants" icon={<UsersIcon className="h-5 w-5" />} />
         <StatLinkCard label={t("owners")} value={owners ?? 0} href="/owners" icon={<KeyIcon className="h-5 w-5" />} />
       </div>
@@ -171,7 +220,8 @@ export default async function DashboardPage({
             {t("noRecentLeases")}
           </p>
         ) : (
-          <div className="overflow-hidden rounded-2xl border border-brand-teal/10 bg-white shadow-card">
+          <div className="relative overflow-hidden rounded-2xl border border-brand-teal/10 bg-white shadow-luxe">
+            <span className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold via-brand-brass to-brand-gold opacity-90" />
             {recentLeases.map((l, i) => (
               <Link
                 key={l.id}
