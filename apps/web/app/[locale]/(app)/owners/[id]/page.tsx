@@ -4,12 +4,15 @@ import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/badge";
 import { EmptyState } from "@/components/ui/empty-state";
+import { DeleteButton } from "@/components/ui/delete-button";
+import { deleteOwnerAction } from "@/lib/actions/owners";
 import {
   ArrowIcon,
   BuildingIcon,
   PhoneIcon,
   MailIcon,
   IdIcon,
+  PencilIcon,
 } from "@/components/ui/icons";
 import {
   PropertyCard,
@@ -35,6 +38,7 @@ export default async function OwnerDetailPage({
   const { locale, id } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("owners");
+  const tc = await getTranslations("common");
 
   const supabase = await createClient();
 
@@ -103,6 +107,17 @@ export default async function OwnerDetailPage({
               </Badge>
             </div>
           ) : null}
+        </div>
+
+        <div className="flex items-center gap-2 sm:ms-auto">
+          <Link
+            href={`/owners/${id}/edit`}
+            className="inline-flex items-center gap-2 rounded-xl border border-brand-teal/15 bg-white px-4 py-2.5 text-sm font-bold text-brand-teal-900 shadow-card transition hover:border-brand-teal/35 hover:bg-brand-teal/5"
+          >
+            <PencilIcon className="h-4 w-4 text-brand-teal" />
+            {tc("edit")}
+          </Link>
+          <DeleteButton action={deleteOwnerAction} id={id} locale={locale} />
         </div>
       </div>
 

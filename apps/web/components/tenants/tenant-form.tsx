@@ -2,16 +2,30 @@
 
 import { useActionState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { createTenantAction, type TenantState } from "@/lib/actions/tenants";
+import {
+  createTenantAction,
+  updateTenantAction,
+  type TenantState,
+} from "@/lib/actions/tenants";
 import { Field, fieldClass } from "@/components/ui/field";
 
 const initialState: TenantState = {};
 
-export function TenantForm() {
+export type TenantInitial = {
+  id: string;
+  full_name: string;
+  phone: string;
+  email: string;
+  national_id: string;
+};
+
+export function TenantForm({ initial }: { initial?: TenantInitial }) {
   const t = useTranslations("tenants");
   const tc = useTranslations("common");
   const locale = useLocale();
-  const action = createTenantAction.bind(null, locale);
+  const action = initial
+    ? updateTenantAction.bind(null, locale, initial.id)
+    : createTenantAction.bind(null, locale);
   const [state, formAction, pending] = useActionState(action, initialState);
 
   return (
@@ -22,6 +36,7 @@ export function TenantForm() {
           name="full_name"
           required
           autoFocus
+          defaultValue={initial?.full_name}
           placeholder={t("fields.namePlaceholder")}
           className={fieldClass}
         />
@@ -29,15 +44,15 @@ export function TenantForm() {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label={t("fields.phone")} htmlFor="phone" hint={tc("optional")}>
-          <input id="phone" name="phone" type="tel" dir="ltr" className={`${fieldClass} text-start`} />
+          <input id="phone" name="phone" type="tel" dir="ltr" defaultValue={initial?.phone} className={`${fieldClass} text-start`} />
         </Field>
         <Field label={t("fields.email")} htmlFor="email" hint={tc("optional")}>
-          <input id="email" name="email" type="email" dir="ltr" className={`${fieldClass} text-start`} />
+          <input id="email" name="email" type="email" dir="ltr" defaultValue={initial?.email} className={`${fieldClass} text-start`} />
         </Field>
       </div>
 
       <Field label={t("fields.nationalId")} htmlFor="national_id" hint={tc("optional")}>
-        <input id="national_id" name="national_id" dir="ltr" className={`${fieldClass} text-start`} />
+        <input id="national_id" name="national_id" dir="ltr" defaultValue={initial?.national_id} className={`${fieldClass} text-start`} />
       </Field>
 
       {state.error ? (
@@ -52,7 +67,7 @@ export function TenantForm() {
           disabled={pending}
           className="rounded-xl bg-brand-teal px-6 py-2.5 text-[15px] font-bold text-white shadow-card transition hover:bg-brand-teal-700 disabled:opacity-60"
         >
-          {pending ? tc("saving") : t("create")}
+          {pending ? tc("saving") : initial ? tc("saveChanges") : t("create")}
         </button>
       </div>
     </form>
