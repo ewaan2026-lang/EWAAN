@@ -236,6 +236,29 @@
       "installment": "Installment"
     }
   },
+  "payments": {
+    "title": "Payments & collections",
+    "subtitle": "Scheduled lease installments and their collection status",
+    "summary": {
+      "collected": "Collected",
+      "outstanding": "Outstanding",
+      "overdue": "Overdue",
+      "installments": "Installments"
+    },
+    "cols": {
+      "dueDate": "Due date",
+      "tenant": "Tenant",
+      "unit": "Unit",
+      "amount": "Amount",
+      "status": "Status"
+    },
+    "markPaid": "Record payment",
+    "marking": "Recording…",
+    "overdueBadge": "Overdue",
+    "emptyTitle": "No payments yet",
+    "emptyBody": "Create a lease to generate its payment schedule, then record collections here.",
+    "createLease": "Create lease"
+  },
   "leaseStatus": {
     "draft": "Draft",
     "active": "Active",
