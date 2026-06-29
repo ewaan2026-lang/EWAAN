@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getActiveOrgId } from "@/lib/org";
+import { logAudit } from "@/lib/audit";
 import type { Enums } from "@ewaan/db";
 
 export type PropertyState = { error?: "name" | "generic" };
@@ -88,6 +89,13 @@ export async function createPropertyAction(
 
   if (error || !data) return { error: "generic" };
 
+  await logAudit({
+    action: "create",
+    entityType: "property",
+    entityId: data.id,
+    summary: `أنشأ عقار: ${name}`,
+  });
+
   revalidatePath(`/${locale}/properties`);
   redirect(`/${locale}/properties/${data.id}`);
 }
@@ -123,6 +131,14 @@ export async function deletePropertyAction(formData: FormData): Promise<void> {
   const { error } = await supabase.from("properties").delete().eq("id", id);
 
   if (error) redirect(`/${locale}/properties/${id}`);
+
+  await logAudit({
+    action: "delete",
+    entityType: "property",
+    entityId: id,
+    summary: "حذف عقاراً",
+  });
+
   revalidatePath(`/${locale}/properties`);
   redirect(`/${locale}/properties`);
 }
