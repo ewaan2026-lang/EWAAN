@@ -10,6 +10,7 @@ import {
   WrenchIcon,
   ChartIcon,
   BellIcon,
+  StarIcon,
   SettingsIcon,
 } from "@/components/ui/icons";
 
@@ -32,6 +33,7 @@ export const NAV: NavItem[] = [
   { key: "maintenance", href: "/maintenance", Icon: WrenchIcon },
   { key: "reports", href: "/reports", Icon: ChartIcon },
   { key: "alerts", href: "/alerts", Icon: BellIcon },
+  { key: "subscriptions", href: "/subscriptions", Icon: StarIcon },
   { key: "settings", href: "/settings", Icon: SettingsIcon },
 ];
 

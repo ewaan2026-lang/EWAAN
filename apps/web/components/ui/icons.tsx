@@ -309,3 +309,19 @@ export function DownloadIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+export function StarIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 3l2.7 5.5 6 .9-4.3 4.2 1 6L12 17l-5.4 2.6 1-6L3.3 9.4l6-.9z" />
+    </svg>
+  );
+}
