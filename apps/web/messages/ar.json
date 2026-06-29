@@ -314,7 +314,20 @@
     "save": "حفظ التغييرات",
     "saved": "تم حفظ التغييرات.",
     "errorName": "اسم المؤسسة مطلوب.",
-    "errorGeneric": "تعذّر الحفظ. حاول مرة أخرى."
+    "errorGeneric": "تعذّر الحفظ. حاول مرة أخرى.",
+    "membersTitle": "الأعضاء والأدوار",
+    "membersSubtitle": "أعضاء مؤسستك وأدوارهم",
+    "memberRole": "الدور",
+    "memberYou": "أنت",
+    "memberRemove": "إزالة",
+    "memberSave": "حفظ",
+    "noMembers": "لا يوجد أعضاء."
+  },
+  "roleNames": {
+    "admin": "مدير المنشأة",
+    "owner": "مالك",
+    "staff": "موظف",
+    "tenant": "مستأجر"
   },
   "maintenance": {
     "title": "الصيانة",
