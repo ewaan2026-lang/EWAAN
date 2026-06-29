@@ -259,6 +259,26 @@
     "emptyBody": "Create a lease to generate its payment schedule, then record collections here.",
     "createLease": "Create lease"
   },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Your organization details and preferences",
+    "orgTitle": "Organization details",
+    "fields": {
+      "name": "Organization name",
+      "legalName": "Legal name",
+      "crNumber": "Commercial registration no.",
+      "vatNumber": "VAT number",
+      "email": "Email",
+      "phone": "Phone",
+      "locale": "Default language"
+    },
+    "localeAr": "Arabic",
+    "localeEn": "English",
+    "save": "Save changes",
+    "saved": "Changes saved.",
+    "errorName": "Organization name is required.",
+    "errorGeneric": "Could not save. Please try again."
+  },
   "maintenance": {
     "title": "Maintenance",
     "subtitle": "Maintenance requests, their status and priority",
