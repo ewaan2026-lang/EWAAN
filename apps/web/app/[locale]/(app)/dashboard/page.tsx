@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { redirect } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CreateOrgForm } from "@/components/create-org-form";
@@ -38,6 +39,12 @@ export default async function DashboardPage({
     .maybeSingle();
 
   if (!membership) {
+    // المستخدم ليس عضواً في مؤسسة — إن كان مستأجراً مرتبطاً، حوّله لبوابة المستأجر.
+    const { data: asTenant } = await supabase.from("tenants").select("id").limit(1);
+    if ((asTenant ?? []).length > 0) {
+      redirect(`/${locale}/portal`);
+    }
+
     return (
       <div className="mx-auto max-w-md pt-10">
         <h1 className="mb-1 text-2xl font-extrabold text-brand-teal-900">

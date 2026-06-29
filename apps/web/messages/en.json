@@ -398,6 +398,29 @@
     "overdue": "Overdue",
     "waived": "Waived"
   },
+  "portal": {
+    "title": "Tenant portal",
+    "welcome": "Welcome, {name}",
+    "notTenantTitle": "No tenant record",
+    "notTenantBody": "Your account isn't linked to any lease yet. Contact the property management to link your account.",
+    "leasesTitle": "My leases",
+    "paymentsTitle": "My payment schedule",
+    "requestsTitle": "Maintenance requests",
+    "newRequestTitle": "New maintenance request",
+    "submit": "Submit request",
+    "noLeases": "No leases linked to your account.",
+    "noPayments": "No payments.",
+    "noRequests": "No maintenance requests.",
+    "fields": {
+      "title": "Request title",
+      "titlePlaceholder": "e.g. Water leak in the kitchen",
+      "description": "Describe the issue",
+      "priority": "Priority"
+    },
+    "errorTitle": "Request title is required.",
+    "errorGeneric": "Could not submit the request. Please try again.",
+    "submitted": "Your request was submitted successfully."
+  },
   "propertyTypes": {
     "residential_building": "Residential building",
     "villa": "Villa",
