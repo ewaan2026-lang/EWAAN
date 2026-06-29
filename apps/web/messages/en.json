@@ -79,6 +79,7 @@
     "emptyBody": "Add tenants to link them to leases and the tenant portal later.",
     "newTitle": "Add a new tenant",
     "newSubtitle": "Enter the tenant's details. You can link them to a lease later.",
+    "editTitle": "Edit tenant",
     "fields": {
       "name": "Full name",
       "namePlaceholder": "e.g. Sara Ahmed",
@@ -102,6 +103,7 @@
     "emptyBody": "Add your property owners to link them to properties and issue statements later.",
     "newTitle": "Add a new owner",
     "newSubtitle": "Enter the owner's details. You can link their properties later.",
+    "editTitle": "Edit owner",
     "fields": {
       "name": "Full name",
       "namePlaceholder": "e.g. Abdullah Mohammed",
