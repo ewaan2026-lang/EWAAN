@@ -259,6 +259,50 @@
     "emptyBody": "Create a lease to generate its payment schedule, then record collections here.",
     "createLease": "Create lease"
   },
+  "maintenance": {
+    "title": "Maintenance",
+    "subtitle": "Maintenance requests, their status and priority",
+    "add": "New request",
+    "addFirst": "Create your first request",
+    "emptyTitle": "No maintenance requests",
+    "emptyBody": "Create your first maintenance request to track it from open to closed.",
+    "newTitle": "New maintenance request",
+    "newSubtitle": "Pick the unit, describe the issue and set its priority.",
+    "needUnitTitle": "You need a unit first",
+    "needUnitBody": "Add a property with at least one unit before creating a maintenance request.",
+    "fields": {
+      "unit": "Unit",
+      "title": "Request title",
+      "titlePlaceholder": "e.g. Bathroom leak",
+      "category": "Category",
+      "categoryPlaceholder": "e.g. plumbing, electrical",
+      "priority": "Priority",
+      "description": "Description",
+      "status": "Status"
+    },
+    "create": "Create request",
+    "errorUnit": "Please select a unit.",
+    "errorTitle": "Request title is required.",
+    "errorGeneric": "Could not create the request. Please try again.",
+    "detailInfoTitle": "Request details",
+    "updateStatus": "Update status",
+    "reportedAt": "Reported",
+    "noDescription": "No description."
+  },
+  "maintenancePriority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "urgent": "Urgent"
+  },
+  "maintenanceStatus": {
+    "new": "New",
+    "assigned": "Assigned",
+    "in_progress": "In progress",
+    "on_hold": "On hold",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
   "leaseStatus": {
     "draft": "Draft",
     "active": "Active",
